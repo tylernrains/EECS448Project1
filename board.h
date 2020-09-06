@@ -11,13 +11,11 @@ class Board
 		~Board();  	    // Destructor
 		void printBoard();  // Print board
 		void updateBoard(); // Function to update board
+
 	private:
-		int numRows = 9;
-		int numCols = 9;
-		char** board;
-
-
-
+		int numRows = 9;      // Numbers (1-9)
+		int numCols = 9;      // Letters (A-I)
+		char m_board[9][9];  
 };
 
 
