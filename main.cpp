@@ -4,13 +4,19 @@
 #include "player.h"
 
 int main(){
-
-	cout << "    Battleship Game\n";
-	//Board board1;
-	//board1.printBoard();
-
-	Player player1;
-	player1.PrintMyShips();	
-
+	cout << "Battleship Game\n";
+	Board board1;
+	int numHits = 0;
+	board1.printBoard();
+	while(numHits < 3)
+	{
+		cout << "Enter coordinates to hit: ";
+		char row;
+		int col;
+		cin >> row >> col;
+		board1.updateBoard(row, col);
+		board1.printBoard();
+		numHits++;
+	}
 	return(0);
 }
