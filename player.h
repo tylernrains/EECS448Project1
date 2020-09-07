@@ -1,15 +1,19 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <iostream>
-#include <board.h>
-using namespace std;
+#include "Board.h"
 
 class Player 
 {
 	public:
 		Player();   	    // Constructor
 		~Player();  	    // Destructor;
+
+		void printMyShips();
+		void printEnemyShips();
+		void clearBoards();
+
+		bool checkHit();
 
 	private:
 		Board my_ships;
