@@ -10,7 +10,7 @@ class Board
 		Board();   	    // Constructor
 		~Board();  	    // Destructor
 		void printBoard();  // Print board
-		void updateBoard(); // Function to update board
+		void updateBoard(char row, int col); // Function to update board
 
 	private:
 		int numRows = 9;      // Numbers (1-9)
