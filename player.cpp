@@ -18,7 +18,7 @@ void Player::PrintEnemyShips()
 
 bool Player::PlaceShip(int size, int row, char c_col, bool horizontal)
 {
-    int col = c_col - 65;
+    int col = toupper(c_col) - 65;
 
     if (horizontal)
     {
