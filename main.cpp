@@ -10,7 +10,7 @@ int main(){
 	//board1.printBoard();
 
 	Player player1;
-	player1.printMyShips();	
-	
+	player1.PrintMyShips();	
+
 	return(0);
 }
