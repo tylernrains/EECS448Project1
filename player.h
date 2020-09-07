@@ -15,8 +15,7 @@ class Player
 		void PrintEnemyShips(); // prints board with hits/misses of enemy ships
 		void ClearBoards(); // returns both boards to original state
 
-		int ConvertCharCoord(char c); //Converts column letter to corresponding int index
-		bool CheckHit(); // returns true/false if a ship has been hit
+	//	bool CheckHit(); // returns true/false if a ship has been hit
 
 	private:
 		Board my_ships;
