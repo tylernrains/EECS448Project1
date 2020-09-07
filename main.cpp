@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Board.h"
+#include "player.h"
 
 int main(){
 	cout << "Battleship Game\n";
