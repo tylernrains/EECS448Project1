@@ -3,43 +3,46 @@
 using namespace std;
 
 Ship::Ship(){
-
+  shipnumer = 0;
+  hit = 0
 }
 Ship::~Ship(){
 
 }
-void Ship::setShip(int row, int col, int shipnumber, string direction, char* board[]){
-  if (row < 1 || row > 9){
-    cout << "invalid row\n";
+void Ship::setShipNumber(int number){
+  shipnumber = number;
+}
+int Ship::getShipNumber(){
+  return shipnumer;
+}
+bool Ship::checkPosition(int row, int col, int sizeofship, string direction){
+  if (direction == "up" && col+sizeofship <= 10){
+    return true;
   }
-  else if (col < 1 || col > 9){
-    cout << "invalid col\n";
+  else if (direction == "right" && row+sizeofship <= 10){
+    return true;
+  }
+  else if (direction == "down" && col-sizeofship >= 0){
+    return true;
+  }
+  else if (direction == "left" && row-sizeofship >= 0){
+    return true;
   }
   else{
-    if (direction == "up" && col+shipnumber <= 10){
-      for (int i=0; i<shipnumber; i++){
-        board[shiprow-1][shipcol-1+i] = 'B';
-      }
-    }
-    else if (direction == "right" && row+shipnumber <= 10){
-      for (int i=0; i<shipnumber; i++){
-        board[shiprow-1+i][shipcol-1] = 'B';
-      }
-    }
-    else if (direction == "down" && col-shipnumber >= 0){
-      for (int i=0; i<shipnumber; i++){
-        board[shiprow-1][shipcol-1-i] = 'B';
-      }
-    }
-    else if (direction == "left" && row-shipnumber >= 0){
-        for (int i=0; i<shipnumber; i++){
-          board[shiprow-1-i][shipcol-1] = 'B';
-        }
-    }
-    else{
-      cout << "wrong direction\n";
-    }
-    shipnumber--;
+    return false;
   }
 }
+void Ship::setHit(){
+  hit++;
+}
+int Ship::getHit(){
+  return hit;
+}
+bool Ship:isSunk(){
+  if (hit == shipnumber){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
