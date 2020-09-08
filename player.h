@@ -3,13 +3,13 @@
 
 #include "Board.h"
 
-class Player 
+class Player
 {
 	public:
 		Player();   	    // Constructor
 		~Player();  	    // Destructor;
 
-		bool PlaceShip(int size, int row, char c_col, bool horizontal); // will try to place a ship with upper left point at row, col; returns false if it cant 
+		bool PlaceShip(int size, int row, char c_col, bool horizontal); // will try to place a ship with upper left point at row, col; returns false if it cant
 
 		void PrintMyShips(); // prints board with players ships
 		void PrintEnemyShips(); // prints board with hits/misses of enemy ships
@@ -19,7 +19,7 @@ class Player
 
 	private:
 		Board my_ships;
-        Board enemy_ships;
+    Board enemy_ships;
 };
 
 
