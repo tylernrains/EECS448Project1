@@ -2,8 +2,8 @@
 using namespace std;
 
 Ship::Ship(){
-  shipnumer = 0;
-  hit = 0
+  shipnumber = 0;
+  hit = 0;
 }
 Ship::~Ship(){
 
@@ -12,7 +12,7 @@ void Ship::setShipNumber(int number){
   shipnumber = number;
 }
 int Ship::getShipNumber(){
-  return shipnumer;
+  return shipnumber;
 }
 bool Ship::checkPosition(int row, int col, int sizeofship, string direction){
   if (direction == "up" && col+sizeofship <= 10){

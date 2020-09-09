@@ -4,14 +4,14 @@
 
 class Ship{
 private:
-  int shipnumer;
+  int shipnumber;
   int hit;
 public:
   Ship();
   ~Ship();
-  void setShipNumber();
+  void setShipNumber(int number);
   int getShipNumber();
-  bool checkPosition();
+  bool checkPosition(int row, int col, int sizeofship, string direction);
   void setHit();
   int getHit();
   bool isSunk();
