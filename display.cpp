@@ -21,6 +21,8 @@ Display::Display()
 	m_hit3 = "\n            ~.,'__  HIT  __',.~\n";
 	m_hit4 = "\n               ,'  ,'   ',\n";
 	m_hit5 = "          ,,.'` _,'       `'.,,\n";
+	m_miss = "                   MISS...\n";
+
 }
 
 void Display::genericBoard() const
@@ -225,4 +227,9 @@ void Display::hit() const
 	std::cout << m_hit3;
 	std::cout << m_hit4;
 	std::cout << m_hit5;
+}
+
+void Display::miss() const
+{
+	std::cout << m_miss;
 }

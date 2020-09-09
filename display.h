@@ -23,6 +23,7 @@ class Display
 	std::string m_hit3;
 	std::string m_hit4;
 	std::string m_hit5;
+	std::string m_miss;
 
 	void genericBoard() const;
 	void genericFrame() const;
@@ -36,6 +37,7 @@ class Display
 	void friendlyBoard(char** board) const;
 	void matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const;
 	void hit() const;
+	void miss() const;
 
 };
 #endif
