@@ -12,6 +12,7 @@ class Board
 		void printBoard();  // Print board
 		void updateBoard(int row, int col, char c); // Function to update board
 		char getValue(int row, int col); // gets value at coordinates
+		char getBoard() const;
 
 	private:
 		int numRows = 9;      // Numbers (1-9)
