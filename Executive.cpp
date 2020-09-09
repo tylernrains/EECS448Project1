@@ -3,7 +3,16 @@
 #include <iostream>
 using namespace std;
 
-int Executive::charToInt(char c) {return (toupper(c) - 65);}
+int Executive::charToInt(char c) {return ((toupper(c) - 65));}
+
+bool Executive::validColumn(char c)
+{
+	while (!isalpha(c))
+	{
+		cout << "Invalid input! Column must be A-I!: ";
+		return false;
+	}
+}
 
 void Executive::run()
 {
@@ -35,13 +44,36 @@ void Executive::run()
 
 				if (i == 1)
 				{
-					cout << "Player1, Where do you want to place 1X" << i << " on the grid? ((row(1-9) col(A-I)): ";
-					cin >> row >> c_col;
+					cout << "Player 1, Where do you want to place 1X" << i << " on the grid? ((row(1-9) col(A-I)): ";
+					while(!(cin >> row))
+					{
+						cout << "Invalid input! Row must be 1-9!: ";
+						cin.clear();
+						cin.ignore(123, '\n');
+					}
+					cout << "Now enter a column A-I: ";
+					cin >> c_col;
+					while(validColumn(c_col))
+					{
+						cin >> c_col;
+					}
+					col = charToInt(c_col);
 				}
 				else
 				{
-					cout << "Choose a pivot coordinate for 1X" << i << " ship on the grid ((row(1-9) col(A-I)): "; 
-					cin >> row >> c_col;
+					cout << "Choose a pivot coordinate for 1X" << i << " ship on the grid ((row(1-9) col(A-I)): ";
+					while (!(cin >> row))
+					{
+						cout << "Invalid input! Row must be 1-9!: ";
+						cin.clear();
+						cin.ignore(123, '\n');
+					}
+					cout << "Now enter a column A-I: ";
+					cin >> c_col;
+					while (validColumn(c_col))
+					{
+						cin >> c_col;
+					}
 					cout << "Up, Down, Left, or Right from pivot? (U, D, L, R): ";
 					cin >> direction;
 				}
@@ -76,13 +108,35 @@ void Executive::run()
 				if (i == 1)
 				{
 					cout << "Player 2, Where do you want to place 1X" << i << " on the grid? ((row(1-9) col(A-I)): ";
-					cin >> row >> c_col;
+					while (!(cin >> row))
+					{
+						cout << "Invalid input! Row must be 1-9!: ";
+						cin.clear();
+						cin.ignore(123, '\n');
+					}
+					cout << "Now enter a column A-I: ";
+					cin >> c_col;
+					while (validColumn(c_col))
+					{
+						cin >> c_col;
+					}
 					col = charToInt(c_col);
 				}
 				else
 				{
-					cout << "Choose a pivot coordinate for 1X" << i << " ship on the grid ((row(1-9) col(A-I)): "; 
-					cin >> row >> c_col;
+					cout << "Choose a pivot coordinate for 1X" << i << " ship on the grid ((row(1-9) col(A-I)): ";
+					while (!(cin >> row))
+					{
+						cout << "Invalid input! Row must be 1-9!: ";
+						cin.clear();
+						cin.ignore(123, '\n');
+					}
+					cout << "Now enter a column A-I: ";
+					cin >> c_col;
+					while (validColumn(c_col))
+					{
+						cin >> c_col;
+					}
 					cout << "Up, Down, Left, or Right from pivot? (U, D, L, R): ";
 					cin >> direction;
 				}

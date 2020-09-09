@@ -15,6 +15,7 @@ public:
 	~Executive(){};
 	void run();
 	int charToInt(char c);
+	bool validColumn(char c); // Function for verifying user input
 
 };
 #endif // EXECUTIVE_H
