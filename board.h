@@ -12,12 +12,11 @@ class Board
 		void printBoard();  // Print board
 		void updateBoard(int row, int col, char c); // Function to update board
 		char getValue(int row, int col); // gets value at coordinates
-		char getBoard() const;
+		char m_board[9][9];  
 
 	private:
 		int numRows = 9;      // Numbers (1-9)
 		int numCols = 9;      // Letters (A-I)
-		char m_board[9][9];  
 };
 
 

@@ -50,13 +50,4 @@ char Board::getValue(int row, int col)
 	return m_board[row][col];
 }
 
-char Board::getBoard() const
-{
-	return m_board;
-}
-
-
-
-
-
 
