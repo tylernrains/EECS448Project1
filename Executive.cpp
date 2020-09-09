@@ -136,12 +136,14 @@ void Executive::run()
 
 				if (player2.CheckHit(row, col))
 				{
-					cout << "HIT!\n";
+					//cout << "HIT!\n";
+					display.hit();
 					player1.UpdateEnemyBoard(row, col, true);
 				}
 				else
 				{
-					cout << "MISS!\n";
+					//cout << "MISS!\n";
+					display.miss();
 					player1.UpdateEnemyBoard(row, col, false);
 				}
 			}
@@ -162,12 +164,14 @@ void Executive::run()
 
 				if (player1.CheckHit(row, col))
 				{
-					cout << "HIT!\n";
+					//cout << "HIT!\n";
+					display.hit();
 					player2.UpdateEnemyBoard(row, col, true);
 				}
 				else
 				{
-					cout << "MISS!\n";
+					//cout << "MISS!\n";
+					display.miss();
 					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
