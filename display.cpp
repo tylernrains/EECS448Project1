@@ -3,6 +3,7 @@
 
 Display::Display()
 {
+	//board elements
 	m_borderSpace = "\n\n\n--------------------------------------------\n\n\n";
 	m_playeriBanner = "                 PLAYER i\n\n\n";
 	m_enemyBanner = "      SHOTS FIRED       SHIPS SUNK: i\n\n\n";
@@ -12,6 +13,14 @@ Display::Display()
 	m_gridLine = "    +---+---+---+---+---+---+---+---+---|\n";
 	m_borderLineBottom = "    +-----------------------------------+";
 	m_friendlyBanner = "\n\n\n\n                YOUR SHIPS\n\n\n";
+
+	//shot-feedback elements
+	m_hit0 = "            _           _       _\n";
+	m_hit1 = "             ',       ,'      ,'\n";
+	m_hit2 = "               `,    '      ,'\n";
+	m_hit3 = "\n            ~.,'__  HIT  __',.~\n";
+	m_hit4 = "\n               ,'  ,'   ',\n";
+	m_hit5 = "          ,,.'` _,'       `'.,,\n";
 }
 
 void Display::genericBoard() const
@@ -206,4 +215,14 @@ char** Display::test_friendlyBoard()
 	board[8][1] = 'S';
 
 	return board;
+}
+
+void Display::hit() const
+{
+	std::cout << m_hit0;
+	std::cout << m_hit1;
+	std::cout << m_hit2;
+	std::cout << m_hit3;
+	std::cout << m_hit4;
+	std::cout << m_hit5;
 }

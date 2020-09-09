@@ -16,15 +16,26 @@ class Display
 	std::string m_borderLineBottom;
 	std::string m_friendlyBanner;
 
-	public:
-	Display();
+	//shot feed-back elements
+	std::string m_hit0;
+	std::string m_hit1;
+	std::string m_hit2;
+	std::string m_hit3;
+	std::string m_hit4;
+	std::string m_hit5;
+
 	void genericBoard() const;
 	void genericFrame() const;
-	void matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const;
 	void enemyBoard(char** board, int playerID, int shipsSunk) const;
-	void friendlyBoard(char** board) const;
 
+
+	public:
+	Display();
 	char** test_enemyBoard();
 	char** test_friendlyBoard();
+	void friendlyBoard(char** board) const;
+	void matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const;
+	void hit() const;
+
 };
 #endif
