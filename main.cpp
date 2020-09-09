@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Board.h"
+#include "board.h"
 #include "player.h"
 
 int main(){
