@@ -7,10 +7,19 @@ int Executive::charToInt(char c) {return ((toupper(c) - 65));}
 
 bool Executive::validColumn(char c)
 {
-	while (!isalpha(c))
+	if (!isalpha(c))
 	{
 		cout << "Invalid input! Column must be A-I!: ";
 		return false;
+	}
+	else if (toupper(c) < 65 || toupper(c) > 73)
+	{
+		cout << "Must be between A-I!: ";
+		return false;
+	} // 65-73
+	else
+	{
+		return true;
 	}
 }
 
@@ -53,7 +62,7 @@ void Executive::run()
 					}
 					cout << "Now enter a column A-I: ";
 					cin >> c_col;
-					while(validColumn(c_col))
+					while(!validColumn(c_col))
 					{
 						cin >> c_col;
 					}
@@ -70,7 +79,7 @@ void Executive::run()
 					}
 					cout << "Now enter a column A-I: ";
 					cin >> c_col;
-					while (validColumn(c_col))
+					while (!validColumn(c_col))
 					{
 						cin >> c_col;
 					}
