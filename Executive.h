@@ -1,6 +1,6 @@
-#pragma once
-#ifdef EXECUTIVE_H
+#ifndef EXECUTIVE_H
 #define EXECUTIVE_H
+
 #include "Board.h"
 #include "Player.h"
 
@@ -11,14 +11,11 @@ class Executive
 {
 public:
 
-
 	Executive(){};
-
-	void run();
 	~Executive(){};
+	void run();
+	int charToInt(char c);
 
-	
 };
-
-
 #endif // EXECUTIVE_H
+
