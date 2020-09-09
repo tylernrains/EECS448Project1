@@ -1,4 +1,3 @@
-  
 #include "Executive.h"
 #include "Player.h"
 #include <iostream>
@@ -38,7 +37,6 @@ void Executive::run()
 				{
 					cout << "Player1, Where do you want to place 1X" << i << " on the grid? ((row(1-9) col(A-I)): ";
 					cin >> row >> c_col;
-					col = charToInt(c_col);
 				}
 				else
 				{
@@ -177,8 +175,6 @@ void Executive::run()
 				cout << "Player2 Wins!\n";
 				winner = true;
 			}
-
-		}
 	*/
 		}
 

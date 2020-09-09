@@ -17,6 +17,5 @@ public:
 	int charToInt(char c);
 
 };
-
-
 #endif // EXECUTIVE_H
+
