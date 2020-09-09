@@ -7,8 +7,8 @@ private:
   int shipnumer;
   int hit;
 public:
-  ship();
-  ~ship();
+  Ship();
+  ~Ship();
   void setShipNumber();
   int getShipNumber();
   bool checkPosition();
