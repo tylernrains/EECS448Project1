@@ -20,6 +20,7 @@ class Display
 	Display();
 	void genericBoard() const;
 	void genericFrame() const;
+	void matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const;
 	void enemyBoard(char** board, int playerID, int shipsSunk) const;
 	void friendlyBoard(char** board) const;
 
