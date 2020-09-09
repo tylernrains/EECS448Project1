@@ -1,16 +1,15 @@
 #include <iostream>
 #include <string>
-#include "board.h"
-#include "player.h"
-#include "display.h"
+#include "Executive.h"
 
 int main(){
 	/*
 	cout << "Battleship Game\n";
-	Board board1;
+	/*Board board1;
 	int numHits = 0;
 	*/
 
+  /*
 	Display display;
 	//display.genericFrame();
 	char** enemyBoard = display.test_enemyBoard();
@@ -21,6 +20,7 @@ int main(){
 	display.matchFrame(2, 3, enemyBoard, friendlyBoard);
 	display.hit();
 	display.miss();
+  */
 
 	/*
 	board1.printBoard();
@@ -35,5 +35,9 @@ int main(){
 		numHits++;
 	}
 	*/
+
+	Executive exec;
+	exec.run();
+
 	return(0);
 }
