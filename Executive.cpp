@@ -123,7 +123,7 @@ void Executive::run()
 			{
 				cout << "Player 1's turn!\n";
 				//player1.PrintEnemyShips();
-				display.matchFrame(playerID=1, p1Sunk, player1.enemy_ships.m_board, player1.my_ships.m_board);
+				display.matchFrame(1, p1Sunk, player1.enemy_ships.m_board, player1.my_ships.m_board);
 				cout << "\n \n";
 				cout << "Your Ships \n";
 				//player1.PrintMyShips();		//Print 2 board before fire
@@ -149,7 +149,7 @@ void Executive::run()
 			{
 				cout << "Player 2's turn!\n";
 				//player2.PrintEnemyShips();
-				display.matchFrame(playerID=2, p2Sunk, player2.enemy_ships.m_board, player2.my_ships.m_board);
+				display.matchFrame(2, p2Sunk, player2.enemy_ships.m_board, player2.my_ships.m_board);
 				cout << "\n \n";
 				cout << "Your Ships \n";
 				//player2.PrintMyShips();		//Print 2 board before fire
