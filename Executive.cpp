@@ -125,7 +125,7 @@ void Executive::run()
 					}
 					cout << "Now enter a column A-I: ";
 					cin >> c_col;
-					while (validColumn(c_col))
+					while (!validColumn(c_col))
 					{
 						cin >> c_col;
 					}
@@ -142,7 +142,7 @@ void Executive::run()
 					}
 					cout << "Now enter a column A-I: ";
 					cin >> c_col;
-					while (validColumn(c_col))
+					while (!validColumn(c_col))
 					{
 						cin >> c_col;
 					}
