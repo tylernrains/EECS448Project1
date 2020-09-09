@@ -122,11 +122,12 @@ void Executive::run()
 			if (round % 2 == 1)
 			{
 				cout << "Player 1's turn!\n";
-				player1.PrintEnemyShips();
+				//player1.PrintEnemyShips();
+				display.matchFrame(playerID=1, p1Sunk, player1.enemy_ships.m_board, player1.my_ships.m_board);
 				cout << "\n \n";
 				cout << "Your Ships \n";
 				//player1.PrintMyShips();		//Print 2 board before fire
-				display.friendlyBoard(player1.my_ships.m_board);
+				//display.friendlyBoard(player1.my_ships.m_board);
 
 				cout << "Choose the coordinate that you want to fire : ((row(1 - 9) col(A - I))\n";
 				cin >> row >> c_col;
@@ -147,11 +148,12 @@ void Executive::run()
 			else
 			{
 				cout << "Player 2's turn!\n";
-				player2.PrintEnemyShips();
+				//player2.PrintEnemyShips();
+				display.matchFrame(playerID=2, p2Sunk, player2.enemy_ships.m_board, player2.my_ships.m_board);
 				cout << "\n \n";
 				cout << "Your Ships \n";
 				//player2.PrintMyShips();		//Print 2 board before fire
-				display.friendlyBoard(player2.my_ships.m_board);
+				//display.friendlyBoard(player2.my_ships.m_board);
 			
 				cout << "Choose the coordinate that you want to fire : ((row(1 - 9) col(A - I))\n";
 				cin >> row >> c_col;
