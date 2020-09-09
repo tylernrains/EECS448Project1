@@ -8,6 +8,7 @@ class Player
 	public:
 		Player();   	    // Constructor
 		~Player();  	    // Destructor;
+		Board my_ships;
 
 		void SetNumShips(int ships); // updates number of ships variable
 
@@ -20,7 +21,6 @@ class Player
 		bool CheckHit(int row, int col); // returns true/false if a ship has been hit
 		void UpdateEnemyBoard(int row, int col, bool hit); // will update enemy_ships with a hit or miss
 	private:
-		Board my_ships;
     	Board enemy_ships;
 		int numShips;
 };
