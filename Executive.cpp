@@ -1,5 +1,6 @@
 #include "Executive.h"
 #include "player.h"
+#include "display.h"
 #include <iostream>
 using namespace std;
 
@@ -9,6 +10,7 @@ void Executive::run()
 {
 	int shipnum = 0;
 	
+	Display display;
 	Player player1;
 	Player player2;
 	int row, col;
@@ -30,7 +32,8 @@ void Executive::run()
 		{
 			chooseShipPosition1:
 				
-				player1.PrintMyShips(); //blank Board
+				//player1.PrintMyShips(); //blank Board
+				display.friendlyBoard(player1.my_ships.m_board);
 				char direction = 'u'; //default direction is up
 
 				if (i == 1)
@@ -61,7 +64,8 @@ void Executive::run()
 				}
 		}
 
-		player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed	
+		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed	
+		display.friendlyBoard(player1.my_ships.m_board);
 
 		cout << " Now switch to Player2\n \n \n \n \n";
 		player2.SetNumShips(shipnum);
@@ -70,7 +74,8 @@ void Executive::run()
 		{
 			chooseShipPosition2:
 
-				player2.PrintMyShips();
+				//player2.PrintMyShips();
+				display.friendlyBoard(player2.my_ships.m_board);
 				char direction = 'u';
 
 				if (i == 1)
@@ -101,7 +106,8 @@ void Executive::run()
 					goto chooseShipPosition2;
 				}
 		}
-		player2.PrintMyShips();
+		//player2.PrintMyShips();
+		display.friendlyBoard(player2.my_ships.m_board);
 	
 
 		cout << " Now play the battle ship\n";
@@ -143,7 +149,8 @@ void Executive::run()
 				player2.PrintEnemyShips();
 				cout << "\n \n";
 				cout << "Your Ships \n";
-				player2.PrintMyShips();		//Print 2 board before fire
+				//player2.PrintMyShips();		//Print 2 board before fire
+				display.friendlyBoard(player2.my_ships.m_board);
 			
 				cout << "Choose the coordinate that you want to fire : ((row(1 - 9) col(A - I))\n";
 				cin >> row >> c_col;
