@@ -6,6 +6,7 @@
 class Display
 {
 	private:
+	//board elements
 	std::string m_borderSpace;
 	std::string m_playeriBanner;
 	std::string m_enemyBanner;
@@ -25,19 +26,24 @@ class Display
 	std::string m_hit5;
 	std::string m_miss;
 
+	//display tests
 	void genericBoard() const;
 	void genericFrame() const;
-	void enemyBoard(char** board, int playerID, int shipsSunk) const;
 
+	//display state of enemy board
+	void enemyBoard(char** board, int playerID, int shipsSunk) const;
 
 	public:
 	Display();
-	char** test_enemyBoard();
-	char** test_friendlyBoard();
+
+	//in-game visual elements
 	void friendlyBoard(char** board) const;
 	void matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const;
 	void hit() const;
 	void miss() const;
 
+	//test boards
+	char** test_enemyBoard();
+	char** test_friendlyBoard();
 };
 #endif
