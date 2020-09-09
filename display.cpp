@@ -15,13 +15,13 @@ Display::Display()
 	m_friendlyBanner = "\n\n\n\n                YOUR SHIPS\n\n\n";
 
 	//shot-feedback elements
-	m_hit0 = "            _           _       _\n";
+	m_hit0 = "\n\n\n            _           _       _\n";
 	m_hit1 = "             ',       ,'      ,'\n";
 	m_hit2 = "               `,    '      ,'\n";
 	m_hit3 = "\n            ~.,'__  HIT  __',.~\n";
 	m_hit4 = "\n               ,'  ,'   ',\n";
-	m_hit5 = "          ,,.'` _,'       `'.,,\n";
-	m_miss = "                   MISS...\n";
+	m_hit5 = "          ,,.'` _,'       `'.,,\n\n\n";
+	m_miss = "\n\n\n                   MISS...\n\n\n";
 
 }
 
