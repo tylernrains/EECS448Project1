@@ -31,14 +31,14 @@ class Display
 	void genericFrame() const;
 
 	//display state of enemy board
-	void enemyBoard(char** board, int playerID, int shipsSunk) const;
+	void enemyBoard(char board[][9], int playerID, int shipsSunk) const;
 
 	public:
 	Display();
 
 	//in-game visual elements
-	void friendlyBoard(char** board) const;
-	void matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const;
+	void friendlyBoard(char board[][9]) const;
+	void matchFrame(int playerID, int shipsSunk, char enemyBrd[][9], char friendlyBrd[][9]) const;
 	void hit() const;
 	void miss() const;
 
