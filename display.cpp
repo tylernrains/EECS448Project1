@@ -47,6 +47,12 @@ void Display::genericFrame() const
 	std::cout << m_borderSpace;
 }
 
+void Display::matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const
+{
+	enemyBoard(enemyBrd, playerID, shipsSunk);
+	friendlyBoard(friendlyBrd);
+}
+
 void Display::enemyBoard(char** board, int playerID, int shipsSunk) const
 {
 	std::string playeriBanner = m_playeriBanner;
@@ -131,6 +137,7 @@ void Display::friendlyBoard(char** board) const
 			std::cout << m_borderLineBottom;
 		}
 	}
+	std::cout << m_borderSpace;
 }
 
 
