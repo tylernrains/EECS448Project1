@@ -95,7 +95,7 @@ bool Player::CheckHit(int row, int col)
 {
     if (row > 8 || row < 0 || col > 8 || col < 0) return false;
 
-    if (my_ships.getValue(row, col) == 'O' || my_ships.getValue(row, col) == 'X')
+    if (my_ships.getValue(row, col) == 'S' || my_ships.getValue(row, col) == 'X')
     {
         my_ships.updateBoard(row, col, 'X');
         return true;
