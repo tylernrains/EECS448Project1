@@ -37,7 +37,7 @@ void Ship::setHit(){
 int Ship::getHit(){
   return hit;
 }
-bool Ship:isSunk(){
+bool Ship::isSunk(){
   if (hit == shipnumber){
     return true;
   }
