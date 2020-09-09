@@ -92,6 +92,48 @@ void Display::enemyBoard(char** board, int playerID, int shipsSunk) const
 	}
 }
 
+void Display::friendlyBoard(char** board) const
+{
+	std::string rowiLabel = m_rowiLabel;
+
+	std::cout << m_friendlyBanner;
+	std::cout << m_colLabel;
+	std::cout << m_borderLineTop;
+	
+	for(int i = 0; i < 9; i++)
+	{
+		rowiLabel.replace(2, 1, std::to_string(i+1));
+
+		for(int j = 0; j < 9; j++)
+		{
+			if(board[i][j] == 'X')
+			{
+				rowiLabel.replace(4*j+5, 1, "(");
+				rowiLabel.replace(4*j+6, 1, std::string(1, board[i][j]));
+				rowiLabel.replace(4*j+7, 1, ")");
+			}
+			else if(board[i][j] == 'S')
+			{
+				rowiLabel.replace(4*j+5, 1, "(");
+				rowiLabel.replace(4*j+7, 1, ")");
+			}
+		}
+
+		std::cout << rowiLabel;
+		rowiLabel = m_rowiLabel;
+
+		if(i < 8)
+		{
+			std::cout << m_gridLine;
+		}
+		else
+		{
+			std::cout << m_borderLineBottom;
+		}
+	}
+}
+
+
 char** Display::test_enemyBoard()
 {
 	//initialize board
@@ -122,6 +164,39 @@ char** Display::test_enemyBoard()
 	board[8][0] = 'X';
 	board[8][1] = 'X';
 	board[8][2] = 'O';
+
+	return board;
+}
+
+char** Display::test_friendlyBoard()
+{
+	//initialize board
+	char** board = new char*[9];
+	for(int i = 0; i < 9; i++)
+	{
+		board[i] = new char[9];
+		for(int j = 0; j < 9; j++)
+		{
+			board[i][j] = ' ';
+		}
+	}
+
+	board[0][8] = 'X';
+	board[1][8] = 'X';
+	board[2][1] = 'S';
+	board[2][2] = 'S';
+	board[2][3] = 'S';
+	board[2][8] = 'S';
+	board[3][8] = 'S';
+	board[4][1] = 'S';
+	board[4][6] = 'X';
+	board[4][8] = 'X';
+	board[4][6] = 'X';
+	board[5][6] = 'X';
+	board[6][6] = 'X';
+	board[7][6] = 'X';
+	board[8][0] = 'S';
+	board[8][1] = 'S';
 
 	return board;
 }
