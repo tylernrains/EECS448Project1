@@ -21,8 +21,9 @@ class Display
 	void genericBoard() const;
 	void genericFrame() const;
 	void enemyBoard(char** board, int playerID, int shipsSunk) const;
-	void friendlyBoard() const;
+	void friendlyBoard(char** board) const;
 
 	char** test_enemyBoard();
+	char** test_friendlyBoard();
 };
 #endif
