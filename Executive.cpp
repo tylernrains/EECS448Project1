@@ -125,7 +125,8 @@ void Executive::run()
 				player1.PrintEnemyShips();
 				cout << "\n \n";
 				cout << "Your Ships \n";
-				player1.PrintMyShips();		//Print 2 board before fire
+				//player1.PrintMyShips();		//Print 2 board before fire
+				display.friendlyBoard(player1.my_ships.m_board);
 
 				cout << "Choose the coordinate that you want to fire : ((row(1 - 9) col(A - I))\n";
 				cin >> row >> c_col;
