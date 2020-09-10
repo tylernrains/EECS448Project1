@@ -98,9 +98,9 @@ bool Player::PlaceShip(int size, int row, int col, char direction)
 
 bool Player::CheckHit(int row, int col)
 {
-    if (row > 8 || row < 0 || col > 8 || col < 0) return false;
+    if (row > 8 || row < 0 || col > 8 || col < 0 || my_ships.getValue(row, col) == 'X') return false;
 
-    if (my_ships.getValue(row, col) == 'S' || my_ships.getValue(row, col) == 'X')
+    if (my_ships.getValue(row, col) == 'S') 
     {
         my_ships.updateBoard(row, col, 'X');
         return true;
