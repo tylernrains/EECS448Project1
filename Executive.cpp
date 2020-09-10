@@ -118,7 +118,7 @@ void Executive::run()
 				}
 				if (!player1.PlaceShip(i, row, col, direction))
 				{
-					cout << "ship could not be placed there. \n";
+					cout << "Ship could not be placed there. \n";
 					goto chooseShipPosition1;
 				}
 		}
