@@ -236,6 +236,10 @@ void Executive::run()
 				}
 				else
 				{
+					if(player2.my_ships.getValue(row, col) == 'X')
+					{
+						cout << "\n\nYou've already hit that spot!\n";
+					}	
 					display.miss();
 					player1.UpdateEnemyBoard(row, col, false);
 				}
@@ -274,6 +278,10 @@ void Executive::run()
 				}
 				else
 				{
+					if(player1.my_ships.getValue(row, col) == 'X')
+					{
+						cout << "\n\nYou've already hit that spot!\n";
+					}	
 					display.miss();
 					player2.UpdateEnemyBoard(row, col, false);
 				}
