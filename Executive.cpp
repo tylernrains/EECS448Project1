@@ -2,9 +2,17 @@
 #include "player.h"
 #include "display.h"
 #include <iostream>
+
 using namespace std;
 
 int Executive::charToInt(char c) {return ((toupper(c) - 65));}
+void Executive::WaitEnter() 
+{ 
+	cin.ignore();
+	std::cout << "Press Enter to end turn..."; 
+	cin.get();
+	for (int i = 0; i < 50; i++) cout << endl;
+}
 
 bool Executive::validColumn(char c)
 {
@@ -113,8 +121,12 @@ void Executive::run()
 
 		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed
 		display.friendlyBoard(player1.my_ships.m_board);
-
-		cout << "\nNow switch to Player2\n";
+/*
+		cout << "Press enter to clear game area and switch to player 2! ";
+		cin.ignore();
+		for (int i = 0; i <= 50; i++) cout << endl;
+*/
+		WaitEnter();
 		player2.SetNumShips(shipnum);
 
 		for (int i = 1; i <= shipnum; i++)
@@ -177,7 +189,7 @@ void Executive::run()
 		}
 		//player2.PrintMyShips();
 		display.friendlyBoard(player2.my_ships.m_board);
-
+		WaitEnter();
 
 		cout << "\nNow play battleship!\n";
 
@@ -244,7 +256,7 @@ void Executive::run()
 					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
-
+			WaitEnter();
 			round++;
 	/*
 			if (numofhit1 == myplayer2.getShipnum())
