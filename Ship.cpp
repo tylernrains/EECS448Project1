@@ -8,8 +8,8 @@ Ship::Ship(){
 Ship::~Ship(){
 
 }
-void Ship::setShipNumber(int number){
-  shipnumber = number;
+void Ship::setShipNumber(int shipnum){
+  shipnumber = shipnum;
 }
 int Ship::getShipNumber(){
   return shipnumber;
