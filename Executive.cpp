@@ -225,7 +225,8 @@ void Executive::run()
 			}
 
 			round++;
-	/*
+			/*
+
 			if (numofhit1 == myplayer2.getShipnum())
 			{
 				cout << "Player1 Wins!\n";
@@ -237,7 +238,7 @@ void Executive::run()
 				cout << "Player2 Wins!\n";
 				winner = true;
 			}
-	*/
-		}
 
+			*/
+		}
 }
