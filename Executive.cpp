@@ -42,8 +42,14 @@ void Executive::run()
 		
 		if (shipnum < 1 || shipnum > 5)
 		{
-			cout << "Invaild number of ships!\n";
-			goto chooseShipNum1;
+			while (!(cin >> shipnum))
+			{
+				cout << "Invalid! Must be 1-5!: ";
+				cin.clear();
+				cin.ignore(123, '\n');
+			}
+			//cout << "Invaild number of ships!\n";
+			//goto chooseShipNum1;
 		}
 
 		for (int i = 1; i <= shipnum; i++)
