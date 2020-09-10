@@ -17,7 +17,7 @@ void Executive::run()
 	char c_col; // char version of the column
 
 	chooseShipNum1:
-		cout << "How many ships do you want to place in the grid? (choose from 1 to 5)\n";
+		cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 		cin >> shipnum;
 		player1.SetNumShips(shipnum); //decalers number of ships for both players
 	
@@ -38,12 +38,12 @@ void Executive::run()
 
 				if (i == 1)
 				{
-					cout << "Player1, Where do you want to place 1X" << i << " on the grid? ((row(1-9) col(A-I)): ";
+					cout << "\nPlayer1, Where do you want to place 1X" << i << " on the grid (row(1-9) col(A-I))? ";
 					cin >> row >> c_col;
 				}
 				else
 				{
-					cout << "Choose a pivot coordinate for 1X" << i << " ship on the grid ((row(1-9) col(A-I)): "; 
+					cout << "\nChoose a pivot coordinate for 1X" << i << " ship on the grid (row(1-9) col(A-I)): "; 
 					cin >> row >> c_col;
 					cout << "Up, Down, Left, or Right from pivot? (U, D, L, R): ";
 					cin >> direction;
@@ -67,7 +67,7 @@ void Executive::run()
 		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed	
 		display.friendlyBoard(player1.my_ships.m_board);
 
-		cout << " Now switch to Player2\n \n \n \n \n";
+		cout << "\nNow switch to Player2\n";
 		player2.SetNumShips(shipnum);
 
 		for (int i = 1; i <= shipnum; i++)
@@ -80,13 +80,13 @@ void Executive::run()
 
 				if (i == 1)
 				{
-					cout << "Player 2, Where do you want to place 1X" << i << " on the grid? ((row(1-9) col(A-I)): ";
+					cout << "\nPlayer 2, Where do you want to place 1X" << i << " on the grid (row(1-9) col(A-I))? ";
 					cin >> row >> c_col;
 					col = charToInt(c_col);
 				}
 				else
 				{
-					cout << "Choose a pivot coordinate for 1X" << i << " ship on the grid ((row(1-9) col(A-I)): "; 
+					cout << "\nChoose a pivot coordinate for 1X" << i << " ship on the grid (row(1-9) col(A-I)): "; 
 					cin >> row >> c_col;
 					cout << "Up, Down, Left, or Right from pivot? (U, D, L, R): ";
 					cin >> direction;
@@ -102,7 +102,7 @@ void Executive::run()
 				}
 				if (!player2.PlaceShip(i, row, col, direction))
 				{
-					cout << "ship could not be placed there. \n";
+					cout << "Ship could not be placed there. \n";
 					goto chooseShipPosition2;
 				}
 		}
@@ -110,7 +110,7 @@ void Executive::run()
 		display.friendlyBoard(player2.my_ships.m_board);
 	
 
-		cout << " Now play the battle ship\n";
+		cout << "\nNow play battleship!\n";
 
 		bool winner = false;
 		int p1Sunk = 0;
@@ -124,12 +124,12 @@ void Executive::run()
 				cout << "Player 1's turn!\n";
 				//player1.PrintEnemyShips();
 				display.matchFrame(1, p1Sunk, player1.enemy_ships.m_board, player1.my_ships.m_board);
-				cout << "\n \n";
-				cout << "Your Ships \n";
+				//cout << "\n \n";
+				//cout << "Your Ships \n";
 				//player1.PrintMyShips();		//Print 2 board before fire
 				//display.friendlyBoard(player1.my_ships.m_board);
 
-				cout << "Choose the coordinate that you want to fire : ((row(1 - 9) col(A - I))\n";
+				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I): ";
 				cin >> row >> c_col;
 				col = charToInt(c_col);
 				row --;
@@ -152,12 +152,12 @@ void Executive::run()
 				cout << "Player 2's turn!\n";
 				//player2.PrintEnemyShips();
 				display.matchFrame(2, p2Sunk, player2.enemy_ships.m_board, player2.my_ships.m_board);
-				cout << "\n \n";
-				cout << "Your Ships \n";
+				//cout << "\n \n";
+				//cout << "Your Ships \n";
 				//player2.PrintMyShips();		//Print 2 board before fire
 				//display.friendlyBoard(player2.my_ships.m_board);
 			
-				cout << "Choose the coordinate that you want to fire : ((row(1 - 9) col(A - I))\n";
+				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
 				cin >> row >> c_col;
 				col = charToInt(c_col);
 				row --;
