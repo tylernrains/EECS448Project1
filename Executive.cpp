@@ -8,16 +8,16 @@ int Executive::charToInt(char c) {return ((toupper(c) - 65));}
 
 bool Executive::validColumn(char c)
 {
-	if (!isalpha(c))
+	if (!isalpha(c) || (toupper(c) < 65 || toupper(c) > 73))
 	{
-		//cout << "Invalid input! Column must be A-I!: ";
+		cout << "Invalid input! Column must be A-I!: ";
 		return false;
 	}
-	else if (toupper(c) < 65 || toupper(c) > 73)
-	{
-		cout << "Invalid input! Must be between A-I!: ";
-		return false;
-	} // 65-73
+	// else if (toupper(c) < 65 || toupper(c) > 73)
+	// {
+	// 	cout << "Invalid input! Must be between A-I!: ";
+	// 	return false;
+	// } // 65-73
 	else
 	{
 		return true;
@@ -199,7 +199,17 @@ void Executive::run()
 				//display.friendlyBoard(player1.my_ships.m_board);
 
 				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I): ";
-				cin >> row >> c_col;
+				while (!(cin >> row) || row < 1 || row > 9)
+				{
+					cout << "Invalid! Must be 1-9!: ";
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
+				cin >> c_col;
+				while (!validColumn(c_col))
+				{
+					cin >> c_col;
+				}
 				col = charToInt(c_col);
 				row --;
 
@@ -227,7 +237,17 @@ void Executive::run()
 				//display.friendlyBoard(player2.my_ships.m_board);
 
 				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
-				cin >> row >> c_col;
+				while (!(cin >> row) || row < 1 || row > 9)
+				{
+					cout << "Invalid! Must be 1-9!: ";
+					cin.clear();
+					cin.ignore(123, '\n');
+				}
+				cin >> c_col;
+				while (!validColumn(c_col))
+				{
+					cin >> c_col;
+				}
 				col = charToInt(c_col);
 				row --;
 
