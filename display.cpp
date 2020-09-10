@@ -7,7 +7,7 @@ Display::Display()
 	//m_borderSpace = "\n\n\n--------------------------------------------\n\n\n";
 	m_borderSpace = "\n\n";
 	m_playeriBanner = "                 PLAYER i\n\n\n";
-	m_enemyBanner = "      SHOTS FIRED       SHIPS SUNK: i\n\n\n";
+	m_enemyBanner =   "               SHOTS FIRED\n\n\n";
 	m_colLabel = "      A   B   C   D   E   F   G   H   I\n";
 	m_borderLineTop = "    +---+---+---+---+---+---+---+---+---+\n";
 	m_rowiLabel = "  i |   |   |   |   |   |   |   |   |   |\n";
@@ -59,21 +59,20 @@ void Display::genericFrame() const
 	std::cout << m_borderSpace;
 }
 
-void Display::matchFrame(int playerID, int shipsSunk, char enemyBrd[][9], char friendlyBrd[][9]) const
+void Display::matchFrame(int playerID, char enemyBrd[][9], char friendlyBrd[][9]) const
 {
-	enemyBoard(enemyBrd, playerID, shipsSunk);
+	enemyBoard(enemyBrd, playerID);
 	std::cout << m_borderSpace;
 	friendlyBoard(friendlyBrd);
 }
 
-void Display::enemyBoard(char board[][9], int playerID, int shipsSunk) const
+void Display::enemyBoard(char board[][9], int playerID) const
 {
 	std::string playeriBanner = m_playeriBanner;
 	std::string enemyBanner = m_enemyBanner;
 	std::string rowiLabel = m_rowiLabel;
 
 	playeriBanner.replace(24, 1, std::to_string(playerID));
-	enemyBanner.replace(36, 1, std::to_string(shipsSunk));
 
 	std::cout << m_borderSpace;
 	std::cout << playeriBanner;

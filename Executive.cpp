@@ -195,9 +195,6 @@ void Executive::run()
 		display.friendlyBoard(player2.my_ships.m_board);
 		cout << "\nNow play battleship!\n";
 
-		//bool winner = false;
-		int p1Sunk = 0;
-		int p2Sunk = 0;
 		int round = 1;
 
 		while (!shipofplayer1.isSunk() || !shipofplayer2.isSunk())
@@ -207,9 +204,9 @@ void Executive::run()
 				cout << "Player 1's turn!\n";
 				cout << "You have been hit by " << shipofplayer1.getHit() << " times\n";
 				//Print boards before fire
-				display.matchFrame(1, p1Sunk, player1.enemy_ships.m_board, player1.my_ships.m_board);
+				display.matchFrame(1, player1.enemy_ships.m_board, player1.my_ships.m_board);
 
-				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I): ";
+				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
 				while (!(cin >> row) || row < 1 || row > 9)
 				{
 					cout << "Invalid! Must be 1-9!: ";
@@ -249,7 +246,7 @@ void Executive::run()
 				cout << "Player 2's turn!\n";
 				cout << "You have been hit by " << shipofplayer2.getHit() << " times\n";
 				//Print boards before fire
-				display.matchFrame(2, p2Sunk, player2.enemy_ships.m_board, player2.my_ships.m_board);
+				display.matchFrame(2, player2.enemy_ships.m_board, player2.my_ships.m_board);
 			
 				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
 				while (!(cin >> row) || row < 1 || row > 9)
