@@ -237,7 +237,6 @@ void Executive::run()
 				else
 				{
 					display.miss();
-					shipofplayer2.setHit();
 					player1.UpdateEnemyBoard(row, col, false);
 				}
 			}
@@ -276,7 +275,6 @@ void Executive::run()
 				else
 				{
 					display.miss();
-					shipofplayer1.setHit();
 					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
