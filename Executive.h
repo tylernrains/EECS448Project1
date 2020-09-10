@@ -1,8 +1,8 @@
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
-#include "Board.h"
-#include "Player.h"
+#include "board.h"
+#include "player.h"
 
 #include <iostream>
 using namespace std;
@@ -15,8 +15,8 @@ public:
 	~Executive(){};
 	void run();
 	int charToInt(char c);
+	bool validColumn(char c); // Function for verifying user input
 
 };
-
-
 #endif // EXECUTIVE_H
+

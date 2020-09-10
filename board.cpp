@@ -1,4 +1,4 @@
-#include "Board.h"
+#include "board.h"
 
 Board::Board()
 {
@@ -49,11 +49,5 @@ char Board::getValue(int row, int col)
 {
 	return m_board[row][col];
 }
-
-
-
-
-
-
 
 
