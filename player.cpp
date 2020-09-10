@@ -21,12 +21,13 @@ void Player::UpdateEnemyBoard(int row, int col, bool hit)
 
 bool Player::PlaceShip(int size, int row, int col, char direction)
 {
-  if (size == 1){
-    cout << "trying to place ship of size " << size << " at " << row << ", " << col << "\n";
-  }
-  else{
-    cout << "trying to place ship of size " << size << " at " << row << ", " << col << " in " << direction << " direction\n";
+    if (size == 1) {
+      cout << "trying to place ship of size " << size << " at " << row << ", " << col << "\n";
 
+    }
+    else{
+    cout << "trying to place ship of size " << size << " at " << row << ", " << col << " in " << direction << " direction\n";
+    }
     if (direction == 'R') // try to place ship right of pivot coordinates row, col
     {
         if (9 - col >= size) // make sure there are enough indices to place ship
@@ -92,8 +93,7 @@ bool Player::PlaceShip(int size, int row, int col, char direction)
         else return false;
     }
     return true;
-  }
-  return true;
+
 }
 
 bool Player::CheckHit(int row, int col)
