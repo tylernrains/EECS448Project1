@@ -13,6 +13,7 @@ public:
 
 	Executive(){};
 	~Executive(){};
+	void WaitEnter();
 	void run();
 	int charToInt(char c);
 	bool validColumn(char c); // Function for verifying user input

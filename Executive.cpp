@@ -7,6 +7,14 @@ using namespace std;
 
 int Executive::charToInt(char c) {return ((toupper(c) - 65));}
 
+void Executive::WaitEnter()
+{
+	cin.ignore();
+	cout << "Press ENTER to end turn...";
+	cin.get();
+	for (int i = 0; i <= 50; i++) cout << endl;
+}
+
 bool Executive::validColumn(char c)
 {
 	if (!isalpha(c) || (toupper(c) < 65 || toupper(c) > 73))
@@ -118,7 +126,8 @@ void Executive::run()
 		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed
 		display.friendlyBoard(player1.my_ships.m_board);
 
-		cout << "\nPlayer 2 set your ships: \n";
+		WaitEnter();
+
 		player2.SetNumShips(shipnum);
 		shipofplayer2.setShipNumber(shipnum);
 
@@ -182,7 +191,7 @@ void Executive::run()
 		}
 		//player2.PrintMyShips();
 		display.friendlyBoard(player2.my_ships.m_board);
-
+		WaitEnter();
 
 		cout << "\nNow play battleship!\n";
 
@@ -234,7 +243,6 @@ void Executive::run()
 				{
 					//cout << "MISS!\n";
 					display.miss();
-					shipofplayer2.setHit();
 					player1.UpdateEnemyBoard(row, col, false);
 				}
 			}
@@ -280,13 +288,12 @@ void Executive::run()
 				{
 					//cout << "MISS!\n";
 					display.miss();
-					shipofplayer1.setHit();
 					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
-
 			round++;
-	/*
+			WaitEnter();
+	/*	
 			if (numofhit1 == myplayer2.getShipnum())
 			{
 				cout << "Player1 Wins!\n";
