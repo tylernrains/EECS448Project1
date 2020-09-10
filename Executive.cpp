@@ -10,12 +10,12 @@ bool Executive::validColumn(char c)
 {
 	if (!isalpha(c))
 	{
-		cout << "Invalid input! Column must be A-I!: ";
+		//cout << "Invalid input! Column must be A-I!: ";
 		return false;
 	}
 	else if (toupper(c) < 65 || toupper(c) > 73)
 	{
-		cout << "Must be between A-I!: ";
+		cout << "Invalid input! Must be between A-I!: ";
 		return false;
 	} // 65-73
 	else
@@ -27,7 +27,7 @@ bool Executive::validColumn(char c)
 void Executive::run()
 {
 	int shipnum = 0;
-	
+
 	Display display;
 	Player player1;
 	Player player2;
@@ -38,8 +38,8 @@ void Executive::run()
 		cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 		cin >> shipnum;
 		player1.SetNumShips(shipnum); //decalers number of ships for both players
-	
-		
+
+
 		if (shipnum < 1 || shipnum > 5)
 		{
 			cout << "Invaild number of ships!\n";
@@ -49,7 +49,7 @@ void Executive::run()
 		for (int i = 1; i <= shipnum; i++)
 		{
 			chooseShipPosition1:
-				
+
 				//player1.PrintMyShips(); //blank Board
 				display.friendlyBoard(player1.my_ships.m_board);
 				char direction = 'u'; //default direction is up
@@ -57,7 +57,7 @@ void Executive::run()
 				if (i == 1)
 				{
 					cout << "\nPlayer1, Where do you want to place 1X" << i << " on the grid (row(1-9) col(A-I))? ";
-					while(!(cin >> row))
+					while(!(cin >> row)||row < 1 || row > 9)
 					{
 						cout << "Invalid input! Row must be 1-9!: ";
 						cin.clear();
@@ -74,7 +74,7 @@ void Executive::run()
 				else
 				{
 					cout << "\nChoose a pivot coordinate for 1X" << i << " ship on the grid (row(1-9) col(A-I)): ";
-					while (!(cin >> row))
+					while (!(cin >> row)||row < 1 || row > 9)
 					{
 						cout << "Invalid input! Row must be 1-9!: ";
 						cin.clear();
@@ -91,9 +91,9 @@ void Executive::run()
 				}
 				col = charToInt(c_col); // convert char to int
 				row--; // decrement row by 1 for indexing array
-				direction = toupper(direction); 
-		
-				if (direction != 'U' && direction != 'D' && direction != 'L' && direction != 'R') 
+				direction = toupper(direction);
+
+				if (direction != 'U' && direction != 'D' && direction != 'L' && direction != 'R')
 				{
 					cout << "Invalid direction input!\n";
 					goto chooseShipPosition1;
@@ -105,7 +105,7 @@ void Executive::run()
 				}
 		}
 
-		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed	
+		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed
 		display.friendlyBoard(player1.my_ships.m_board);
 
 		cout << "\nNow switch to Player2\n";
@@ -122,7 +122,7 @@ void Executive::run()
 				if (i == 1)
 				{
 					cout << "\nPlayer 2, Where do you want to place 1X" << i << " on the grid (row(1-9) col(A-I))? ";
-					while (!(cin >> row))
+					while (!(cin >> row)||row < 1 || row > 9)
 					{
 						cout << "Invalid input! Row must be 1-9!: ";
 						cin.clear();
@@ -139,7 +139,7 @@ void Executive::run()
 				else
 				{
 					cout << "\nChoose a pivot coordinate for 1X" << i << " ship on the grid (row(1-9) col(A-I)): ";
-					while (!(cin >> row))
+					while (!(cin >> row)||row < 1 || row > 9)
 					{
 						cout << "Invalid input! Row must be 1-9!: ";
 						cin.clear();
@@ -157,8 +157,8 @@ void Executive::run()
 				col = charToInt(c_col);
 				row--;
 				direction = toupper(direction);
-		
-				if (direction != 'U' && direction != 'D' && direction != 'L' && direction != 'R') 
+
+				if (direction != 'U' && direction != 'D' && direction != 'L' && direction != 'R')
 				{
 					cout << "Invalid direction input!\n";
 					goto chooseShipPosition2;
@@ -171,7 +171,7 @@ void Executive::run()
 		}
 		//player2.PrintMyShips();
 		display.friendlyBoard(player2.my_ships.m_board);
-	
+
 
 		cout << "\nNow play battleship!\n";
 
@@ -219,7 +219,7 @@ void Executive::run()
 				//cout << "Your Ships \n";
 				//player2.PrintMyShips();		//Print 2 board before fire
 				//display.friendlyBoard(player2.my_ships.m_board);
-			
+
 				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
 				cin >> row >> c_col;
 				col = charToInt(c_col);
