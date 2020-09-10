@@ -7,6 +7,18 @@ using namespace std;
 
 int Executive::charToInt(char c) {return ((toupper(c) - 65));}
 
+int Executive::numShipCoords(int shipNum)
+{
+	int n = 0;
+
+	for(int i = 1; i <= shipNum; i++)
+	{
+		n = n+i;
+	}
+
+	return n;
+}
+
 void Executive::WaitEnter()
 {
 	cin.ignore();
@@ -49,7 +61,7 @@ void Executive::run()
 		cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 		cin >> shipnum;
 		player1.SetNumShips(shipnum); //decalers number of ships for both players
-		shipofplayer1.setShipNumber(shipnum);
+		shipofplayer1.setShipNumber(numShipCoords(shipnum));
 
 
 		if (shipnum < 1 || shipnum > 5)
@@ -67,8 +79,8 @@ void Executive::run()
 		for (int i = 1; i <= shipnum; i++)
 		{
 			chooseShipPosition1:
-
-				//player1.PrintMyShips(); //blank Board
+				
+				//blank Board
 				display.friendlyBoard(player1.my_ships.m_board);
 				char direction = 'u'; //default direction is up
 
@@ -123,19 +135,18 @@ void Executive::run()
 				}
 		}
 
-		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed
+		//print last time so player can see 1x5 ship placed	
 		display.friendlyBoard(player1.my_ships.m_board);
 
 		WaitEnter();
 
 		player2.SetNumShips(shipnum);
-		shipofplayer2.setShipNumber(shipnum);
+		shipofplayer2.setShipNumber(numShipCoords(shipnum));
 
 		for (int i = 1; i <= shipnum; i++)
 		{
 			chooseShipPosition2:
 
-				//player2.PrintMyShips();
 				display.friendlyBoard(player2.my_ships.m_board);
 				char direction = 'u';
 
@@ -189,15 +200,12 @@ void Executive::run()
 					goto chooseShipPosition2;
 				}
 		}
-		//player2.PrintMyShips();
+
 		display.friendlyBoard(player2.my_ships.m_board);
 		WaitEnter();
 
 		cout << "\nNow play battleship!\n";
 
-		//bool winner = false;
-		int p1Sunk = 0;
-		int p2Sunk = 0;
 		int round = 1;
 
 		while (!shipofplayer1.isSunk() || !shipofplayer2.isSunk())
@@ -206,14 +214,10 @@ void Executive::run()
 			{
 				cout << "Player 1's turn!\n";
 				cout << "You have been hit by " << shipofplayer1.getHit() << " times\n";
-				//player1.PrintEnemyShips();
-				display.matchFrame(1, p1Sunk, player1.enemy_ships.m_board, player1.my_ships.m_board);
-				//cout << "\n \n";
-				//cout << "Your Ships \n";
-				//player1.PrintMyShips();		//Print 2 board before fire
-				//display.friendlyBoard(player1.my_ships.m_board);
+				//Print boards before fire
+				display.matchFrame(1, player1.enemy_ships.m_board, player1.my_ships.m_board);
 
-				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I): ";
+				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
 				while (!(cin >> row) || row < 1 || row > 9)
 				{
 					cout << "Invalid! Must be 1-9!: ";
@@ -230,7 +234,6 @@ void Executive::run()
 
 				if (player2.CheckHit(row, col))
 				{
-					//cout << "HIT!\n";
 					display.hit();
 					shipofplayer2.setHit();
 					player1.UpdateEnemyBoard(row, col, true);
@@ -241,23 +244,24 @@ void Executive::run()
 				}
 				else
 				{
-					//cout << "MISS!\n";
+					if(player2.my_ships.getValue(row, col) == 'X')
+					{
+						cout << "\n\nYou've already hit that spot!\n";
+					}	
+					else
+					{
+						player1.UpdateEnemyBoard(row, col, false);
+					}
 					display.miss();
-					player1.UpdateEnemyBoard(row, col, false);
 				}
 			}
 			else
 			{
 				cout << "Player 2's turn!\n";
 				cout << "You have been hit by " << shipofplayer2.getHit() << " times\n";
-
-				//player2.PrintEnemyShips();
-				display.matchFrame(2, p2Sunk, player2.enemy_ships.m_board, player2.my_ships.m_board);
-				//cout << "\n \n";
-				//cout << "Your Ships \n";
-				//player2.PrintMyShips();		//Print 2 board before fire
-				//display.friendlyBoard(player2.my_ships.m_board);
-
+				//Print boards before fire
+				display.matchFrame(2, player2.enemy_ships.m_board, player2.my_ships.m_board);
+			
 				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
 				while (!(cin >> row) || row < 1 || row > 9)
 				{
@@ -275,7 +279,6 @@ void Executive::run()
 
 				if (player1.CheckHit(row, col))
 				{
-					//cout << "HIT!\n";
 					display.hit();
 					shipofplayer1.setHit();
 					player2.UpdateEnemyBoard(row, col, true);
@@ -286,26 +289,18 @@ void Executive::run()
 				}
 				else
 				{
-					//cout << "MISS!\n";
+					if(player1.my_ships.getValue(row, col) == 'X')
+					{
+						cout << "\n\nYou've already hit that spot!\n";
+					}	
+					else
+					{
+						player2.UpdateEnemyBoard(row, col, false);
+					}
 					display.miss();
-					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
 			round++;
 			WaitEnter();
-	/*	
-			if (numofhit1 == myplayer2.getShipnum())
-			{
-				cout << "Player1 Wins!\n";
-				winner = true;
-			}
-
-			else ( numofhit2 == player1.getShipnum())
-			{
-				cout << "Player2 Wins!\n";
-				winner = true;
-			}
-	*/
 		}
-
 }
