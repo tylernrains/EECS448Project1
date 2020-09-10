@@ -106,7 +106,7 @@ void Executive::run()
 				}
 				if (!player1.PlaceShip(i, row, col, direction))
 				{
-					cout << "ship could not be placed there. \n";
+					cout << "Ship could not be placed there. \n";
 					goto chooseShipPosition1;
 				}
 		}
@@ -114,7 +114,7 @@ void Executive::run()
 		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed
 		display.friendlyBoard(player1.my_ships.m_board);
 
-		cout << "\nNow switch to Player2\n";
+		cout << "\nPlayer 2 set your ships: \n";
 		player2.SetNumShips(shipnum);
 
 		for (int i = 1; i <= shipnum; i++)
