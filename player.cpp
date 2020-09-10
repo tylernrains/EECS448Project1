@@ -21,8 +21,13 @@ void Player::UpdateEnemyBoard(int row, int col, bool hit)
 
 bool Player::PlaceShip(int size, int row, int col, char direction)
 {
-    if (row > 8 || row < 0 || col > 8 || col < 0) return false;
+    if (size == 1) {
+      cout << "trying to place ship of size " << size << " at " << row << ", " << col << "\n";
 
+    }
+    else{
+    cout << "trying to place ship of size " << size << " at " << row << ", " << col << " in " << direction << " direction\n";
+    }
     if (direction == 'R') // try to place ship right of pivot coordinates row, col
     {
         if (9 - col >= size) // make sure there are enough indices to place ship
@@ -40,37 +45,37 @@ bool Player::PlaceShip(int size, int row, int col, char direction)
     }
     else if (direction == 'L') // Left
     {
-        if (col - size + 1 >= 0) 
+        if (col - size + 1 >= 0)
         {
-            for (int j = col; j >= col - size + 1; j--) 
+            for (int j = col; j >= col - size + 1; j--)
             {
-                if (my_ships.getValue(row, j) != '-') return false; 
+                if (my_ships.getValue(row, j) != '-') return false;
             }
             for (int j = col; j >= col - size + 1; j--)
             {
-                my_ships.updateBoard(row, j, 'S'); 
+                my_ships.updateBoard(row, j, 'S');
             }
         }
-        else return false; 
+        else return false;
     }
     else if (direction == 'D') // Down
     {
-        if (9 - row >= size)  
+        if (9 - row >= size)
         {
             for (int i = row; i < row + size; i++)
             {
-                if (my_ships.getValue(i, col) != '-') return false; 
+                if (my_ships.getValue(i, col) != '-') return false;
             }
             for (int i = row; i < row + size; i++)
             {
-                my_ships.updateBoard(i, col, 'S'); 
+                my_ships.updateBoard(i, col, 'S');
             }
         }
         else return false;
     }
     else if (direction == 'U') // Up
     {
-        if (row - size + 1 >= 0)  
+        if (row - size + 1 >= 0)
         {
             for (int i = row; i >= row - size + 1; i--)
             {
@@ -78,11 +83,11 @@ bool Player::PlaceShip(int size, int row, int col, char direction)
                 {
                     cout << "nope because " << my_ships.getValue(i, col);
                     return false;
-                } 
+                }
             }
             for (int i = row; i >= row - size + 1; i--)
             {
-                my_ships.updateBoard(i, col, 'S'); 
+                my_ships.updateBoard(i, col, 'S');
             }
         }
         else return false;
