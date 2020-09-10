@@ -1,6 +1,7 @@
 #include "Executive.h"
 #include "player.h"
 #include "display.h"
+#include "Ship.h"
 #include <iostream>
 using namespace std;
 
@@ -33,11 +34,14 @@ void Executive::run()
 	Player player2;
 	int row, col;
 	char c_col; // char version of the column
+	Ship shipofplayer1;
+	Ship shipofplayer2;
 
 	chooseShipNum1:
 		cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 		cin >> shipnum;
 		player1.SetNumShips(shipnum); //decalers number of ships for both players
+		shipofplayer1.setShipNumber(shipnum);
 
 
 		if (shipnum < 1 || shipnum > 5)
@@ -110,6 +114,7 @@ void Executive::run()
 
 		cout << "\nNow switch to Player2\n";
 		player2.SetNumShips(shipnum);
+		shipofplayer2.setShipNumber(shipnum);
 
 		for (int i = 1; i <= shipnum; i++)
 		{
@@ -175,16 +180,17 @@ void Executive::run()
 
 		cout << "\nNow play battleship!\n";
 
-		bool winner = false;
+		//bool winner = false;
 		int p1Sunk = 0;
 		int p2Sunk = 0;
 		int round = 1;
 
-		while (!winner)
+		while (!shipofplayer1.isSunk() || !shipofplayer2.isSunk())
 		{
 			if (round % 2 == 1)
 			{
 				cout << "Player 1's turn!\n";
+				cout << "You have been hit by " << shipofplayer1.getHit() << " times\n";
 				//player1.PrintEnemyShips();
 				display.matchFrame(1, p1Sunk, player1.enemy_ships.m_board, player1.my_ships.m_board);
 				//cout << "\n \n";
@@ -201,18 +207,26 @@ void Executive::run()
 				{
 					//cout << "HIT!\n";
 					display.hit();
+					shipofplayer2.setHit();
 					player1.UpdateEnemyBoard(row, col, true);
+					if (shipofplayer2.isSunk()){
+						cout << "you win\n";
+						break;
+					}
 				}
 				else
 				{
 					//cout << "MISS!\n";
 					display.miss();
+					shipofplayer2.setHit();
 					player1.UpdateEnemyBoard(row, col, false);
 				}
 			}
 			else
 			{
 				cout << "Player 2's turn!\n";
+				cout << "You have been hit by " << shipofplayer2.getHit() << " times\n";
+
 				//player2.PrintEnemyShips();
 				display.matchFrame(2, p2Sunk, player2.enemy_ships.m_board, player2.my_ships.m_board);
 				//cout << "\n \n";
@@ -229,12 +243,18 @@ void Executive::run()
 				{
 					//cout << "HIT!\n";
 					display.hit();
+					shipofplayer1.setHit();
 					player2.UpdateEnemyBoard(row, col, true);
+					if (shipofplayer1.isSunk()){
+						cout << "you win\n";
+						break;
+					}
 				}
 				else
 				{
 					//cout << "MISS!\n";
 					display.miss();
+					shipofplayer1.setHit();
 					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
