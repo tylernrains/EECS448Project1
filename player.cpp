@@ -21,7 +21,7 @@ void Player::UpdateEnemyBoard(int row, int col, bool hit)
 
 bool Player::PlaceShip(int size, int row, int col, char direction)
 {
-    cout << "trying to place ship of size " << size << " at " << row << ", " << col << " in " << direction << " direction\n";
+    if (row > 8 || row < 0 || col > 8 || col < 0) return false;
 
     if (direction == 'R') // try to place ship right of pivot coordinates row, col
     {
