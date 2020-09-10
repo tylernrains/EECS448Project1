@@ -105,7 +105,7 @@ void Executive::run()
 				}
 		}
 
-		//player1.PrintMyShips(); //  print last time so player can see 1x5 ship placed	
+		//player1.PrintMyShips(); //  print last time so player can see largest ship placed	
 		display.friendlyBoard(player1.my_ships.m_board);
 
 		cout << "\nNow switch to Player2\n";
