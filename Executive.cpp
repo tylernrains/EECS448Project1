@@ -7,6 +7,18 @@ using namespace std;
 
 int Executive::charToInt(char c) {return ((toupper(c) - 65));}
 
+int Executive::numShipCoords(int shipNum)
+{
+	int n = 0;
+
+	for(int i = 1; i <= shipNum; i++)
+	{
+		n = n+i;
+	}
+
+	return n;
+}
+
 bool Executive::validColumn(char c)
 {
 	if (!isalpha(c) || (toupper(c) < 65 || toupper(c) > 73))
@@ -41,7 +53,7 @@ void Executive::run()
 		cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 		cin >> shipnum;
 		player1.SetNumShips(shipnum); //decalers number of ships for both players
-		shipofplayer1.setShipNumber(shipnum);
+		shipofplayer1.setShipNumber(numShipCoords(shipnum));
 
 
 		if (shipnum < 1 || shipnum > 5)
@@ -120,7 +132,7 @@ void Executive::run()
 
 		cout << "\nPlayer 2 set your ships: \n";
 		player2.SetNumShips(shipnum);
-		shipofplayer2.setShipNumber(shipnum);
+		shipofplayer2.setShipNumber(numShipCoords(shipnum));
 
 		for (int i = 1; i <= shipnum; i++)
 		{
