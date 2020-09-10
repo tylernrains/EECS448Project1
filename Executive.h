@@ -13,11 +13,11 @@ public:
 
 	Executive(){};
 	~Executive(){};
+	void WaitEnter();
 	void run();
 	int charToInt(char c);
 	bool validColumn(char c); // Function for verifying user input
-	int numShipCoords(int shipNum);
+  int numShipCoords(int shipNum);
 
 };
 #endif // EXECUTIVE_H
-

@@ -19,6 +19,14 @@ int Executive::numShipCoords(int shipNum)
 	return n;
 }
 
+void Executive::WaitEnter()
+{
+	cin.ignore();
+	cout << "Press ENTER to end turn...";
+	cin.get();
+	for (int i = 0; i <= 50; i++) cout << endl;
+}
+
 bool Executive::validColumn(char c)
 {
 	if (!isalpha(c) || (toupper(c) < 65 || toupper(c) > 73))
@@ -130,7 +138,8 @@ void Executive::run()
 		//print last time so player can see 1x5 ship placed	
 		display.friendlyBoard(player1.my_ships.m_board);
 
-		cout << "\nPlayer 2 set your ships: \n";
+		WaitEnter();
+
 		player2.SetNumShips(shipnum);
 		shipofplayer2.setShipNumber(numShipCoords(shipnum));
 
@@ -193,6 +202,8 @@ void Executive::run()
 		}
 
 		display.friendlyBoard(player2.my_ships.m_board);
+		WaitEnter();
+
 		cout << "\nNow play battleship!\n";
 
 		int round = 1;
@@ -283,22 +294,7 @@ void Executive::run()
 					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
-
 			round++;
-			/*
-
-			if (numofhit1 == myplayer2.getShipnum())
-			{
-				cout << "Player1 Wins!\n";
-				winner = true;
-			}
-
-			else ( numofhit2 == player1.getShipnum())
-			{
-				cout << "Player2 Wins!\n";
-				winner = true;
-			}
-
-			*/
+			WaitEnter();
 		}
 }
