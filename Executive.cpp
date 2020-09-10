@@ -248,8 +248,11 @@ void Executive::run()
 					{
 						cout << "\n\nYou've already hit that spot!\n";
 					}	
+					else
+					{
+						player1.UpdateEnemyBoard(row, col, false);
+					}
 					display.miss();
-					player1.UpdateEnemyBoard(row, col, false);
 				}
 			}
 			else
@@ -290,8 +293,11 @@ void Executive::run()
 					{
 						cout << "\n\nYou've already hit that spot!\n";
 					}	
+					else
+					{
+						player2.UpdateEnemyBoard(row, col, false);
+					}
 					display.miss();
-					player2.UpdateEnemyBoard(row, col, false);
 				}
 			}
 			round++;
