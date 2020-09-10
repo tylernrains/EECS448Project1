@@ -1,6 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
-#include  <string>
+#include <string>
+#include <iostream>
 
 class Ship{
 private:
@@ -9,9 +10,9 @@ private:
 public:
   Ship();
   ~Ship();
-  void setShipNumber(int number);
+  void setShipNumber(int shipnum);
   int getShipNumber();
-  bool checkPosition(int row, int col, int sizeofship, string direction);
+  bool checkPosition(int row, int col, int sizeofship, std::string direction);
   void setHit();
   int getHit();
   bool isSunk();
