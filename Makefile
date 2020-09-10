@@ -1,9 +1,9 @@
 prog: main.o board.o player.o Executive.o display.o
-	g++ -g -std=c++11 -Wall main.o board.o player.o Executive.o display.o -o program
+	g++ -g -std=c++11 -Wall main.o board.o player.o Executive.o display.o -o Battleship
 
-main.o: main.cpp Executive.o 
+main.o: main.cpp Executive.o
 	g++ -g -std=c++11 -Wall -c main.cpp
-  
+
 Executive.o: Executive.h Executive.cpp player.o board.o display.o
 	g++ -g -std=c++11 -Wall -c Executive.cpp
 
@@ -15,6 +15,6 @@ player.o: player.h player.cpp board.o
 
 display.o: display.h display.cpp
 	g++ -g -std=c++11 -Wall -c display.cpp
-  
+
 clean:
-	rm *.o program
+	rm *.o Battleship
