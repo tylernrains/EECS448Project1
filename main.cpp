@@ -21,20 +21,21 @@ int main(){
 	display.hit();
 	display.miss();
   */
-
-	/*
-	board1.printBoard();
-	while(numHits < 3)
-	{
-		cout << "Enter coordinates to hit: ";
-		char row;
-		int col;
-		cin >> row >> col;
-		board1.updateBoard(row, col);
-		board1.printBoard();
-		numHits++;
-	}
-	*/
+ 	// Board board1;
+	// int numHits;
+	
+	// board1.printBoard();
+	// while(numHits < 3)
+	// {
+	// 	cout << "Enter coordinates to hit: ";
+	// 	char row;
+	// 	int col;
+	// 	cin >> row >> col;
+	// 	board1.updateBoard(row, col, 'c');
+	// 	board1.printBoard();
+	// 	numHits++;
+	// }
+	
 
 	Executive exec;
 	exec.run();
