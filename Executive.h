@@ -1,8 +1,8 @@
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
-#include "Board.h"
-#include "Player.h"
+#include "board.h"
+#include "player.h"
 
 #include <iostream>
 using namespace std;

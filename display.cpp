@@ -4,7 +4,8 @@
 Display::Display()
 {
 	//board elements
-	m_borderSpace = "\n\n\n--------------------------------------------\n\n\n";
+	//m_borderSpace = "\n\n\n--------------------------------------------\n\n\n";
+	m_borderSpace = "\n\n";
 	m_playeriBanner = "                 PLAYER i\n\n\n";
 	m_enemyBanner = "      SHOTS FIRED       SHIPS SUNK: i\n\n\n";
 	m_colLabel = "      A   B   C   D   E   F   G   H   I\n";
@@ -12,16 +13,16 @@ Display::Display()
 	m_rowiLabel = "  i |   |   |   |   |   |   |   |   |   |\n";
 	m_gridLine = "    +---+---+---+---+---+---+---+---+---|\n";
 	m_borderLineBottom = "    +-----------------------------------+";
-	m_friendlyBanner = "\n\n\n\n                YOUR SHIPS\n\n\n";
+	m_friendlyBanner = "\n\n                YOUR SHIPS\n\n\n";
 
 	//shot-feedback elements
-	m_hit0 = "\n\n\n            _           _       _\n";
+	m_hit0 = "\n            _           _       _\n";
 	m_hit1 = "             ',       ,'      ,'\n";
 	m_hit2 = "               `,    '      ,'\n";
-	m_hit3 = "\n            ~.,'__  HIT  __',.~\n";
+	m_hit3 = "\n            ~.,'__  HIT! __',.~\n";
 	m_hit4 = "\n               ,'  ,'   ',\n";
 	m_hit5 = "          ,,.'` _,'       `'.,,\n\n\n";
-	m_miss = "\n\n\n                   MISS...\n\n\n";
+	m_miss = "\n\n                   MISS...\n\n\n";
 
 }
 
@@ -58,13 +59,14 @@ void Display::genericFrame() const
 	std::cout << m_borderSpace;
 }
 
-void Display::matchFrame(int playerID, int shipsSunk, char** enemyBrd, char** friendlyBrd) const
+void Display::matchFrame(int playerID, int shipsSunk, char enemyBrd[][9], char friendlyBrd[][9]) const
 {
 	enemyBoard(enemyBrd, playerID, shipsSunk);
+	std::cout << m_borderSpace;
 	friendlyBoard(friendlyBrd);
 }
 
-void Display::enemyBoard(char** board, int playerID, int shipsSunk) const
+void Display::enemyBoard(char board[][9], int playerID, int shipsSunk) const
 {
 	std::string playeriBanner = m_playeriBanner;
 	std::string enemyBanner = m_enemyBanner;
@@ -109,7 +111,7 @@ void Display::enemyBoard(char** board, int playerID, int shipsSunk) const
 	}
 }
 
-void Display::friendlyBoard(char** board) const
+void Display::friendlyBoard(char board[][9]) const
 {
 	std::string rowiLabel = m_rowiLabel;
 
