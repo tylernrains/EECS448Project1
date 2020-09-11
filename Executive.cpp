@@ -266,6 +266,7 @@ void Executive::run()
 			{
 				display.miss();
 				player1.UpdateEnemyBoard(row, col, false);
+				player2.my_ships.updateBoard(row, col, 'O');
 			}
 		}
 		else
@@ -317,6 +318,7 @@ void Executive::run()
 			{
 				display.miss();
 				player2.UpdateEnemyBoard(row, col, false);
+				player2.my_ships.updateBoard(row, col, 'O');
 			}
 		}
 		round++;
