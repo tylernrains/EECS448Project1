@@ -35,11 +35,6 @@ bool Executive::validColumn(char c)
 		cout << "Invalid input! Column must be A-I!: ";
 		return false;
 	}
-	// else if (toupper(c) < 65 || toupper(c) > 73)
-	// {
-	// 	cout << "Invalid input! Must be between A-I!: ";
-	// 	return false;
-	// } // 65-73
 	else
 	{
 		return true;
@@ -144,8 +139,8 @@ void Executive::run()
 	//WaitEnter();
 	cout <<" Switch to Player 2 Setting!\n";
 
-	cout << "Player 2, how many ships do you want to place in the grid (choose from 1 to 5)? ";
-	cin >> shipnum;
+	//cout << "Player 2, how many ships do you want to place in the grid (choose from 1 to 5)? ";
+	//cin >> shipnum;
 	player2.SetNumShips(shipnum);
 	shipofplayer2.setShipNumber(numShipCoords(shipnum));
 
