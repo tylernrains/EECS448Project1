@@ -137,8 +137,8 @@ void Executive::run()
 	//print last time so player can see 1x5 ship placed
 	display.friendlyBoard(player1.my_ships.m_board);
 
-	//WaitEnter();
 	cout <<" Switch to Player 2 Setting!\n";
+	WaitEnter();
 
 	//cout << "Player 2, how many ships do you want to place in the grid (choose from 1 to 5)? ";
 	//cin >> shipnum;
@@ -253,7 +253,7 @@ void Executive::run()
 
 			else if(player2.my_ships.getValue(row, col) == 'X')
 			{
-				cout <<player2.my_ships.getValue(row, col);
+				//cout <<player2.my_ships.getValue(row, col);
 				cout << "\n\nYou've already hit that spot!\n";
 				goto chooseFire1;
 			}
@@ -266,6 +266,7 @@ void Executive::run()
 			{
 				display.miss();
 				player1.UpdateEnemyBoard(row, col, false);
+				player2.my_ships.updateBoard(row,col, 'O');
 			}
 		}
 		else
@@ -317,6 +318,7 @@ void Executive::run()
 			{
 				display.miss();
 				player2.UpdateEnemyBoard(row, col, false);
+				player1.my_ships.updateBoard(row,col, 'O');
 			}
 		}
 		round++;
