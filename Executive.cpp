@@ -250,7 +250,7 @@ void Executive::run()
 					shipofplayer2.setHit();
 					player1.UpdateEnemyBoard(row, col, true);
 					if (shipofplayer2.isSunk()){
-						cout << "you win\n";
+						cout << "Player 1 wins!\n";
 						break;
 					}
 				}
@@ -301,7 +301,7 @@ void Executive::run()
 					shipofplayer1.setHit();
 					player2.UpdateEnemyBoard(row, col, true);
 					if (shipofplayer1.isSunk()){
-						cout << "you win\n";
+						cout << "Player 2 wins!\n";
 						break;
 					}
 				}
