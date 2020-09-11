@@ -211,7 +211,7 @@ void Executive::run()
 		display.friendlyBoard(player2.my_ships.m_board);
 		WaitEnter();
 
-//       Playing part
+//      Playing part
 		cout << "\nNow play battleship!\n";
 
 		int round = 1;
