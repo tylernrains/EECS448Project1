@@ -40,7 +40,7 @@ void Board::printBoard()
 	}
 }
 
-void Board::updateBoard(int row, int col, char c) 
+void Board::updateBoard(int row, int col, char c)
 {
 	m_board[row][col] = c;
 }
@@ -49,5 +49,3 @@ char Board::getValue(int row, int col)
 {
 	return m_board[row][col];
 }
-
-
