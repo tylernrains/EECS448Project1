@@ -79,7 +79,7 @@ void Display::enemyBoard(char board[][9], int playerID) const
 	std::cout << enemyBanner;
 	std::cout << m_colLabel;
 	std::cout << m_borderLineTop;
-	
+
 	for(int i = 0; i < 9; i++)
 	{
 		rowiLabel.replace(2, 1, std::to_string(i+1));
@@ -117,7 +117,7 @@ void Display::friendlyBoard(char board[][9]) const
 	std::cout << m_friendlyBanner;
 	std::cout << m_colLabel;
 	std::cout << m_borderLineTop;
-	
+
 	for(int i = 0; i < 9; i++)
 	{
 		rowiLabel.replace(2, 1, std::to_string(i+1));
@@ -134,6 +134,13 @@ void Display::friendlyBoard(char board[][9]) const
 			{
 				rowiLabel.replace(4*j+5, 1, "(");
 				rowiLabel.replace(4*j+7, 1, ")");
+			}
+
+			else if(board[i][j] == 'O')
+			{
+				// rowiLabel.replace(4*j+5, 1, "(");
+				rowiLabel.replace(4*j+6, 1, std::string(1, board[i][j]));
+				// rowiLabel.replace(4*j+7, 1, ")");
 			}
 		}
 
