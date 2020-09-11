@@ -135,12 +135,9 @@ void Display::friendlyBoard(char board[][9]) const
 				rowiLabel.replace(4*j+5, 1, "(");
 				rowiLabel.replace(4*j+7, 1, ")");
 			}
-
 			else if(board[i][j] == 'O')
 			{
-				// rowiLabel.replace(4*j+5, 1, "(");
 				rowiLabel.replace(4*j+6, 1, std::string(1, board[i][j]));
-				// rowiLabel.replace(4*j+7, 1, ")");
 			}
 		}
 
