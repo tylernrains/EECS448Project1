@@ -1,3 +1,4 @@
+
 #include "Executive.h"
 #include "player.h"
 #include "display.h"
@@ -307,7 +308,7 @@ void Executive::run()
 
 				else if(player1.my_ships.getValue(row, col) == 'X')
 				{
-					cout <<player2.my_ships.getValue(row, col);
+					//cout <<player2.my_ships.getValue(row, col);
 					cout << "\n\nYou've already hit that spot!\n";
 					goto chooseFire2;
 				}
