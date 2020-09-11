@@ -318,7 +318,7 @@ void Executive::run()
 			{
 				display.miss();
 				player2.UpdateEnemyBoard(row, col, false);
-				player2.my_ships.updateBoard(row, col, 'O');
+				player1.my_ships.updateBoard(row, col, 'O');
 			}
 		}
 		round++;
