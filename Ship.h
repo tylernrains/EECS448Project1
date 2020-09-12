@@ -12,7 +12,6 @@ public:
   ~Ship();
   void setShipNumber(int shipnum);
   int getShipNumber();
-  bool checkPosition(int row, int col, int sizeofship, std::string direction);
   void setHit();
   int getHit();
   bool isSunk();
