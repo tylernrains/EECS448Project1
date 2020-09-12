@@ -24,7 +24,7 @@ public:
 	
 	/**
  	* @post: run the program
-	* @param: play the Battleship game, the prog gets ship info from players. 
+	* @param: play the Battleship game, the prog gets ship info from players
 	* 		  player will fire the enemy ship until there is a winner
  	**/
 	void run();
