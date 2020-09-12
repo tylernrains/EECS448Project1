@@ -14,23 +14,6 @@ void Ship::setShipNumber(int shipnum){
 int Ship::getShipNumber(){
   return shipnumber;
 }
-bool Ship::checkPosition(int row, int col, int sizeofship, string direction){
-  if (direction == "up" && col+sizeofship <= 10){
-    return true;
-  }
-  else if (direction == "right" && row+sizeofship <= 10){
-    return true;
-  }
-  else if (direction == "down" && col-sizeofship >= 0){
-    return true;
-  }
-  else if (direction == "left" && row-sizeofship >= 0){
-    return true;
-  }
-  else{
-    return false;
-  }
-}
 void Ship::setHit(){
   hit++;
 }

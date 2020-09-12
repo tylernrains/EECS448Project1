@@ -6,19 +6,57 @@
 		<li>Player.h</li>
 		<li>Board.h</li>
 		<li>Ship.h</li>
-		<li>Display.h</li>		
+		<li>Display.h</li>
 	</ul>
 
 	<div id='player'>
-	
+
 	</div>
 	<div id='board'>
-	
+
 	</div>
 	<div id='ship'>
-	
+		<h4>/*------------------------------------------------------------</h4>
+		 <h4>* @Filename: Ship.h</h4>
+		 <h4>* @Description: used to store and get a ship's data and also check status of ship</h4>
+		 <h4>------------------------------------------------------------*/</h4>
+		 <p>/**</p>
+		 <p>	* @pre: None</p>
+		 <p>	* @post: Initializes all numeric data to zero</p>
+		 <p>	**/</p>
+		 <p>Ship()</p>
+		 <p>/**</p>
+		 <p>	* @pre: None</p>
+		 <p>	* @post: None</p>
+		 <p>	**/</p>
+		 <p>~Ship()</p>
+		 <p>/**</p>
+		 <p>	* @post: assigns shipnum to shipnumber</p>
+		 <p>	* @param: shipnum, to be assigned to shipnumber</p>
+		 <p>	**/</p>
+		 <p>void setShipNumber(int shipnum)</p>
+		 <p>/**</p>
+		 <p>	* @pre: None</p>
+		 <p>	* @return: shipnumber, the number of ship of each player</p>
+		 <p>	**/</p>
+		 <p>int getShipNumber()</p>
+		 <p>/**</p>
+		 <p>	* @post: count the number of hit after hitting</p>
+		 <p>	* @param: None</p>
+		 <p>	**/</p>
+		 <p>void setHit()</p>
+		 <p>/**</p>
+		 <p>	* @pre: None</p>
+		 <p>	* @return: hit, the number of hit of each player</p>
+		 <p>	**/</p>
+		 <p>int getHit()</p>
+		 <p>/**</p>
+		 <p>	* @post all ship is sunk</p>
+		 <p>	* @return: intrue if the number of ship equal to the number of hit, false otherwise</p>
+		 <p>	**/</p>
+		 <p>bool isSunk()</p>
 	</div>
 	<div id='display'>
-	
+
 	</div>
 </body>
