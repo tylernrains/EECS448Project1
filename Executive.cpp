@@ -54,7 +54,7 @@ void Executive::run()
 	Ship shipofplayer2;
 
 
-	cout << "Player1, how many ships do you want to place in the grid (choose from 1 to 5)? ";
+	cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 	cin >> shipnum;
 	player1.SetNumShips(shipnum); //decalers number of ships for both players
 	shipofplayer1.setShipNumber(numShipCoords(shipnum));
@@ -218,7 +218,7 @@ void Executive::run()
 		if (round % 2 == 1)
 		{
 			cout << "Player 1's turn!\n";
-			cout << "You have been hit by " << shipofplayer1.getHit() << " times\n";
+			cout << "You have been hit " << shipofplayer1.getHit() << " times\n";
 			//Print boards before fire
 			display.matchFrame(1, player1.enemy_ships.m_board, player1.my_ships.m_board);
 
@@ -272,7 +272,7 @@ void Executive::run()
 		else
 		{
 			cout << "Player 2's turn!\n";
-			cout << "You have been hit by " << shipofplayer2.getHit() << " times\n";
+			cout << "You have been hit " << shipofplayer2.getHit() << " times\n";
 			//Print boards before fire
 			display.matchFrame(2, player2.enemy_ships.m_board, player2.my_ships.m_board);
 
