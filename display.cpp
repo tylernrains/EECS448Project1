@@ -4,7 +4,6 @@
 Display::Display()
 {
 	//board elements
-	//m_borderSpace = "\n\n\n--------------------------------------------\n\n\n";
 	m_borderSpace = "\n\n";
 	m_playeriBanner = "                 PLAYER i\n\n\n";
 	m_enemyBanner =   "               SHOTS FIRED\n\n\n";
@@ -24,39 +23,6 @@ Display::Display()
 	m_hit5 = "          ,,.'` _,'       `'.,,\n\n\n";
 	m_miss = "\n\n                   MISS...\n\n\n";
 
-}
-
-void Display::genericBoard() const
-{
-	std::cout << m_colLabel;
-	std::cout << m_borderLineTop;
-	std::string rowiLabel = m_rowiLabel;
-
-	for(int i = 1; i <= 9; i++)
-	{
-		rowiLabel.replace(2, 1, std::to_string(i));
-		std::cout << rowiLabel;
-
-		if(i < 9)
-		{
-			std::cout << m_gridLine;
-		}
-		else
-		{
-			std::cout << m_borderLineBottom;
-		}
-	}
-}
-
-void Display::genericFrame() const
-{
-	std::cout << m_borderSpace;
-	std::cout << m_playeriBanner;
-	std::cout << m_enemyBanner;
-	genericBoard();
-	std::cout << m_friendlyBanner;
-	genericBoard();
-	std::cout << m_borderSpace;
 }
 
 void Display::matchFrame(int playerID, char enemyBrd[][9], char friendlyBrd[][9]) const
@@ -154,74 +120,6 @@ void Display::friendlyBoard(char board[][9]) const
 		}
 	}
 	std::cout << m_borderSpace;
-}
-
-
-char** Display::test_enemyBoard()
-{
-	//initialize board
-	char** board = new char*[9];
-	for(int i = 0; i < 9; i++)
-	{
-		board[i] = new char[9];
-		for(int j = 0; j < 9; j++)
-		{
-			board[i][j] = ' ';
-		}
-	}
-
-	board[0][5] = 'O';
-	board[0][8] = 'X';
-	board[1][8] = 'X';
-	board[2][1] = 'X';
-	board[2][2] = 'X';
-	board[2][3] = 'X';
-	board[3][3] = 'O';
-	board[4][1] = 'X';
-	board[4][6] = 'X';
-	board[4][8] = 'X';
-	board[5][6] = 'X';
-	board[6][3] = 'O';
-	board[6][6] = 'X';
-	board[7][6] = 'X';
-	board[8][0] = 'X';
-	board[8][1] = 'X';
-	board[8][2] = 'O';
-
-	return board;
-}
-
-char** Display::test_friendlyBoard()
-{
-	//initialize board
-	char** board = new char*[9];
-	for(int i = 0; i < 9; i++)
-	{
-		board[i] = new char[9];
-		for(int j = 0; j < 9; j++)
-		{
-			board[i][j] = ' ';
-		}
-	}
-
-	board[0][8] = 'X';
-	board[1][8] = 'X';
-	board[2][1] = 'S';
-	board[2][2] = 'S';
-	board[2][3] = 'S';
-	board[2][8] = 'S';
-	board[3][8] = 'S';
-	board[4][1] = 'S';
-	board[4][6] = 'X';
-	board[4][8] = 'X';
-	board[4][6] = 'X';
-	board[5][6] = 'X';
-	board[6][6] = 'X';
-	board[7][6] = 'X';
-	board[8][0] = 'S';
-	board[8][1] = 'S';
-
-	return board;
 }
 
 void Display::hit() const

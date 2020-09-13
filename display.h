@@ -1,3 +1,8 @@
+/*------------------------------------------------------------
+ * @Filename: display.h
+ * @Description: pretty prints game elements
+ ------------------------------------------------------------*/
+
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
@@ -26,24 +31,47 @@ class Display
 	std::string m_hit5;
 	std::string m_miss;
 
-	//display tests
-	void genericBoard() const;
-	void genericFrame() const;
-
+	/**
+	 * @pre: board must use 'X' and 'O' to denote hits and misses, respectively.
+	 * @post: prints state of enemy board
+	 * @param: board, 9x9 array marked with 'X's and/or 'O's
+	 * @param: playerID, either 1 or 2 (to differentiate players)
+	 **/
 	//display state of enemy board
 	void enemyBoard(char board[][9], int playerID) const;
 
 	public:
+
+	/**
+	 * @post: constructs display obj.
+	 **/
 	Display();
 
+	/**
+	 * @pre: board must use 'X' and 'S' to denote hits and ships, respectively.
+	 * @post: prints state of player's ships
+	 * @param: board, 9x9 array marked with 'X's and/or 'S's
+	 **/
 	//in-game visual elements
 	void friendlyBoard(char board[][9]) const;
-	void matchFrame(int playerID, char enemyBrd[][9], char friendlyBrd[][9]) const;
-	void hit() const;
-	void miss() const;
 
-	//test boards
-	char** test_enemyBoard();
-	char** test_friendlyBoard();
+	/**
+	 * @pre: boards must use 'X's, 'O's, and 'S's to denote hits, misses, and ships, respectively
+	 * @post: prints state of playerID's enemy board and their ships
+	 * @param: playerID, either 1 or 2 (to differentiate players)
+	 * @param: enemyBrd, 9x9 array marked with 'X's and/or 'O's
+	 * @param: friendlyBrd, 9x9 array marked with 'X's and/or 'S's
+	 **/
+	void matchFrame(int playerID, char enemyBrd[][9], char friendlyBrd[][9]) const;
+
+	/**
+	 * @post: prints hit message
+	 **/
+	void hit() const;
+
+	/**
+	 * @post: prints miss message
+	 **/
+	void miss() const;
 };
 #endif
