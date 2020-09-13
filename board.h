@@ -14,7 +14,7 @@ class Board
 		~Board();  	    // Destructor
 
 		/**
- 		* @pre: function to print a board, used to test
+ 		* @pre: function to print a board, used as a test
  		* @post: prints the 9x9 board specific to the class
 		**/
 		void printBoard();
