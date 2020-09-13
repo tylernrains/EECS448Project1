@@ -15,7 +15,7 @@ class Player
 		/**
  		* @pre: Ships parameter must be Int between 1 & 5, inclusive
 		* @post: Both players will be limited to the ships parameter
-		* @param: int row: how many ships each player will be able to place
+		* @param: int ships: how many ships each player will be able to place
  		**/
 		void SetNumShips(int ships); // updates number of ships variable
 
@@ -54,7 +54,7 @@ class Player
  		* @pre: 'row' & 'col' must be between 0 & 8, inclusive
 		* @post: None
 		* @param: row: which row to check; col: which column to check
-		*@return: returns true if a ship has been hit, false if not
+		* @return: returns true if a ship has been hit, false if not
  		**/
 		bool CheckHit(int row, int col);
 				
