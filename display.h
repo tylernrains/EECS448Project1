@@ -26,10 +26,6 @@ class Display
 	std::string m_hit5;
 	std::string m_miss;
 
-	//display tests
-	void genericBoard() const;
-	void genericFrame() const;
-
 	//display state of enemy board
 	void enemyBoard(char board[][9], int playerID) const;
 
@@ -41,9 +37,5 @@ class Display
 	void matchFrame(int playerID, char enemyBrd[][9], char friendlyBrd[][9]) const;
 	void hit() const;
 	void miss() const;
-
-	//test boards
-	char** test_enemyBoard();
-	char** test_friendlyBoard();
 };
 #endif
