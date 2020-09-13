@@ -25,6 +25,9 @@ Display::Display()
 
 }
 
+Display::~Display()
+{}
+
 void Display::matchFrame(int playerID, char enemyBrd[][9], char friendlyBrd[][9]) const
 {
 	enemyBoard(enemyBrd, playerID);
