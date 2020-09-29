@@ -16,22 +16,15 @@ class AI : public Player
 	public:
 		/**
 		 * Constructor for AI.
-		 * @param difficulty - an int, 0 for easy, 1 for med, 2 for hard.
+		 * @param difficulty - an int, 1 for easy, 2 for med, 3 for hard.
 		 */
 		AI(int difficulty);
 
 		~AI();
-
-		/**
-		 * TODO delete this eventually
-		 * All of the methods inherited from Player should function fine for the AI class.
-		 * I don't immediately see any need for overriding them.
-		 * -Trey
-		 */
 		
 		/**
 		 * Fires a shot.
-		 * @pre the game should not be over and there should still be open spaces to fire at on the opponent's board
+		 * @pre the game should not be over and there should still be open spaces to fire at.
 		 * @post returns a string of length 2 that contains the coordinates to fire at.
 		 */
 		string fireShot();
@@ -39,6 +32,11 @@ class AI : public Player
 	private:
 
 		int m_difficulty;
+		// The following vars are used in the medium difficulty AI.
+		int* m_prevShot;
+		int* m_origHit;
+		bool m_trackingHit;
+		int m_direction; // Direction from hit to search for more hits: 0 up, 1 left, 2 right, 3 down.
 
 		/**
 		 * Fires a shot. Easy difficulty.
@@ -51,6 +49,20 @@ class AI : public Player
 		 * @post returns a string of length 2 that contains the coordinates to fire at.
 		 */
 		string shoot2();
+
+		/**
+		 * Used in the process of finding another hit.
+		 * @pre the AI must be set to difficulty 2
+		 * @post m_direction has been incremented and m_prevShot has been reset to m_origHit
+		 */
+		void incrementDirection();
+
+		/**
+		 * Checks if the last shot fired was a hit.
+		 * @pre the AI must be set to difficulty 2
+		 * @post returns true if the previous shot was a hit, false otherwise.
+		 */
+		bool isPrevShotHit();
 
 		/**
 		 * Fires a shot. Hard difficulty.
