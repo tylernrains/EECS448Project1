@@ -9,6 +9,16 @@
 
 using namespace std;
 
+
+AI::AI(){
+
+	m_difficulty = 1;			//if not specified, then set game to Easy
+	m_direction = 0;
+	m_prevShot = nullptr;
+	m_origHit = nullptr;
+
+}
+
 AI::AI(int difficulty) {
 	m_difficulty = difficulty;
 	

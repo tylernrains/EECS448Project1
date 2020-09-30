@@ -41,18 +41,9 @@ bool Executive::validColumn(char c)
 	}
 }
 
-void Executive::run()
+void Executive::run_setup_PvP()
 {
-	int shipnum = 0;
-
-	Display display;
-	Player player1;
-	Player player2;
-	int row, col;
-	char c_col; // char version of the column
-	Ship shipofplayer1;
-	Ship shipofplayer2;
-
+	
 
 	cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 	cin >> shipnum;
@@ -208,7 +199,38 @@ void Executive::run()
 	display.friendlyBoard(player2.my_ships.m_board);
 	WaitEnter();
 
-//      Playing part
+	run_PvP();
+
+}
+
+
+
+	void Executive::run_setup_PvAi(){
+	
+	// ##########################################################################
+	// ##########################################################################
+	// 
+	//
+	//		Enter code here to setup player 1 and AI ships
+	//	    
+	//		
+	// ##########################################################################
+	// ##########################################################################
+
+
+	std::cout << "\n\nThis is running the setup for PvAi\n\n";
+
+	run_PvAi();
+
+
+	}
+
+
+
+
+
+	void Executive::run_PvP() {
+
 	cout << "\nNow play battleship!\n";
 
 	int round = 1;
@@ -318,6 +340,132 @@ void Executive::run()
 			{
 				display.miss();
 				player2.UpdateEnemyBoard(row, col, false);
+				player1.my_ships.updateBoard(row, col, 'O');
+			}
+		}
+		round++;
+		WaitEnter();
+	}
+}
+
+
+
+
+
+void Executive::run_PvAi() {
+
+	cout << "\nNow play battleship!\n";
+
+	int round = 1;
+
+	while (!shipofplayer1.isSunk() || !shipofai.isSunk())
+	{
+		if (round % 2 == 1)
+		{
+			cout << "Player 1's turn!\n";
+			cout << "You have been hit " << shipofplayer1.getHit() << " times\n";
+			//Print boards before fire
+			display.matchFrame(1, player1.enemy_ships.m_board, player1.my_ships.m_board);
+
+			chooseFire1:
+			cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
+			while (!(cin >> row) || row < 1 || row > 9)
+			{
+				// cout <<"row = "<<row<<'\n';
+				cout << "Invalid! Must be 1-9!: ";
+				cin.clear();
+				cin.ignore(123, '\n');
+			}
+			cin >> c_col;
+			while (!validColumn(c_col))
+			{
+				cin >> c_col;
+			}
+			col = charToInt(c_col);
+			row --;
+
+
+			if (computer.CheckHit(row, col))
+			{
+				display.hit();
+				shipofai.setHit();
+				player1.UpdateEnemyBoard(row, col, true);
+				if (shipofai.isSunk()){
+					cout << "Player 1 wins!\n";
+					break;
+				}
+			}
+
+			else if(computer.my_ships.getValue(row, col) == 'X')
+			{
+				//cout <<player2.my_ships.getValue(row, col);
+				cout << "\n\nYou've already hit that spot!\n";
+				goto chooseFire1;
+			}
+			else if(player1.enemy_ships.getValue(row, col) == 'O')
+			{
+				cout <<"\n\nYou've already fire this point!\n";
+				goto chooseFire1;
+			}
+			else
+			{
+				display.miss();
+				player1.UpdateEnemyBoard(row, col, false);
+				computer.my_ships.updateBoard(row, col, 'O');
+			}
+		}
+		else
+		{
+			cout << "BattleshipAI's turn!\n";
+			//cout << "You have been hit " << shipofplayer2.getHit() << " times\n";
+			//Print boards before fire
+			//display.matchFrame(2, player2.enemy_ships.m_board, player2.my_ships.m_board);
+
+			chooseFireAI:
+			//cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
+			//while (!(cin >> row) || row < 1 || row > 9)
+			//{
+			//	cout << "Invalid! Must be 1-9!: ";
+			//	cin.clear();
+			//	cin.ignore(123, '\n');
+			//}
+			std::string AIshot = "";
+			AIshot = computer.fireShot();
+
+			row = AIshot[0];
+			c_col = AIshot[1];
+
+
+			while (!validColumn(c_col))
+			{
+				cin >> c_col;
+			}
+			col = charToInt(c_col);
+			row --;
+
+			if (player1.CheckHit(row, col))
+			{
+				display.hit();
+				shipofplayer1.setHit();
+				computer.UpdateEnemyBoard(row, col, true);
+				if (shipofplayer1.isSunk()){
+					cout << "BattleshipAI Wins!\n";
+					break;
+				}
+			}
+
+			else if(player1.my_ships.getValue(row, col) == 'X')
+			{
+				goto chooseFireAI;
+			}
+			else if(computer.enemy_ships.getValue(row, col) == 'O')
+			{
+				goto chooseFireAI;
+			}
+			else
+			{
+				display.miss();
+				computer.UpdateEnemyBoard(row, col, false);
 				player1.my_ships.updateBoard(row, col, 'O');
 			}
 		}

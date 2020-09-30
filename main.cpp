@@ -16,7 +16,40 @@ int main(){
 	for (int i = 0; i < 3; i++) std::cout << endl;
 
 	Executive exec;
-	exec.run();
+	int Gameplay_opt;
+
+	while (true){
+
+		std::cout << "Welcome! How would you like to play Battleship?\n\n  1) Player vs Player\n  2) Player vs AI\n\n Enter choice: ";
+		std::cin >> Gameplay_opt;
+
+	if(cin.fail()){
+
+			cin.clear();
+			cin.ignore();
+			Gameplay_opt = 0;
+	}
+
+	if (Gameplay_opt == 1){
+
+		std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		exec.run_setup_PvP();
+		break;
+
+	} else if (Gameplay_opt == 2) {
+
+		std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		exec.run_setup_PvAi();
+		break;
+
+	 } else {
+
+		 std::cout << "\n\nInvalid! Enter option '1' or '2'\n\n";
+		 
+	 }
+	}
+	
+	std::cout << "\nClosing Battleship\n\n\n";
 
 	return(0);
 }
