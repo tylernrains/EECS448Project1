@@ -355,8 +355,8 @@ void Executive::run_setup_PvP()
 				string colorrow = "";
 				cout << "\nEnter col to shoot from a column and row to shoot from a row";
 				cin >> colorrow;
-				while(colorrow == "row" || colorrow == "row" || colorrow == "col" || colorrow == "Col")
-				{
+				//while(colorrow == "row" || colorrow == "row" || colorrow == "col" || colorrow == "Col")
+				//{
 					if (colorrow == "row" || colorrow == "row")
 					{
 						cout << "\nchoose a row between 1 and 9 ";
@@ -380,11 +380,12 @@ void Executive::run_setup_PvP()
 						col = charToInt(c_col);
 						firetorpedo(round, col, true);
 					}
-					else {
+					else
+					{
 						cout << "Invalid! Enter row or col: ";
 						cin >> colorrow;
 					}
-				}
+				//}
 			}
 			else if(playershot == "shot" || playershot == "Shot")
 			{
