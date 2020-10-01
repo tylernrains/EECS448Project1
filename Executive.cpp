@@ -271,7 +271,7 @@ void Executive::run_setup_PvP()
 						row --;
 						firetorpedo(round, row, true);
 						if (shipofplayer2.isSunk()){
-							break;
+							//break;
 						}
 					}
 					else if (colorrow == "col" || colorrow == "Col")
@@ -285,7 +285,7 @@ void Executive::run_setup_PvP()
 						col = charToInt(c_col);
 						firetorpedo(round, col, false);
 						if (shipofplayer2.isSunk()){
-							break;
+							//break;
 						}
 					}
 					else {
