@@ -269,7 +269,7 @@ void Executive::run_setup_PvP()
 							cin.ignore(123, '\n');
 						}
 						row --;
-						firetorpedo(round, row, false);
+						firetorpedo(round, row, true);
 						if (shipofplayer2.isSunk()){
 							break;
 						}
@@ -283,7 +283,7 @@ void Executive::run_setup_PvP()
 							cin >> c_col;
 						}
 						col = charToInt(c_col);
-						firetorpedo(round, col, true);
+						firetorpedo(round, col, false);
 						if (shipofplayer2.isSunk()){
 							break;
 						}
@@ -373,7 +373,7 @@ void Executive::run_setup_PvP()
 							cin.ignore(123, '\n');
 						}
 						row --;
-						firetorpedo(round, row, false);
+						firetorpedo(round, row, true);
 						if (shipofplayer1.isSunk()){
 							break;
 						}
@@ -387,7 +387,7 @@ void Executive::run_setup_PvP()
 							cin >> c_col;
 						}
 						col = charToInt(c_col);
-						firetorpedo(round, col, true);
+						firetorpedo(round, col, false);
 						if (shipofplayer1.isSunk()){
 							break;
 						}
@@ -582,7 +582,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol)
 {
 	if (turns % 2 == 1)// see if it's player1 or player2
 	{
-		if (iscol == false)// see if it's a row or col to fire from
+		if (iscol == true)// see if it's a row or col to fire from
 		{
 			for (int i = 0; i < 9; i++)
 			{
@@ -635,7 +635,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol)
 	}
 	else
 	{
-		if (iscol == false) // see if it's a row or col to fire from
+		if (iscol == true) // see if it's a row or col to fire from
 		{
 			for (int i = 0; i < 9; i++)
 			{
