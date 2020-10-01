@@ -252,7 +252,7 @@ void Executive::run_setup_PvP()
 
 			cin >> playershot;
 
-			if (playershot == "torp" || playershot == "Torp")
+			if ((playershot == "torp" || playershot == "Torp") && player1torpedo == true)
 			{
 				string colorrow = "";
 				cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
@@ -268,6 +268,7 @@ void Executive::run_setup_PvP()
 					}
 					row --;
 					firetorpedo(round, row, true);
+					player1torpedo = false;
 					if (shipofplayer2.isSunk()){
 						break;
 					}
@@ -282,6 +283,7 @@ void Executive::run_setup_PvP()
 					}
 					col = charToInt(c_col);
 					firetorpedo(round, col, false);
+					player1torpedo = false;
 					if (shipofplayer2.isSunk()){
 						break;
 					}
@@ -290,6 +292,10 @@ void Executive::run_setup_PvP()
 					cout << "Invalid! Enter row or col: ";
 					cin >> colorrow;
 				}
+			}
+			else if((playershot == "torp" || playershot == "Torp") && player1torpedo == false)
+			{
+				cout << "\nyou shot your torpedo already! ";
 			}
 			else if(playershot == "shot" || playershot == "Shot")
 			{
@@ -353,7 +359,7 @@ void Executive::run_setup_PvP()
 
 			cin >> playershot;
 
-			if (playershot == "torp" || playershot == "Torp")
+			if (playershot == "torp" || playershot == "Torp") && player2torpedo == true)
 			{
 				string colorrow = "";
 				cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
@@ -369,6 +375,7 @@ void Executive::run_setup_PvP()
 					}
 					row --;
 					firetorpedo(round, row, true);
+						player2torpedo = false;
 					if (shipofplayer1.isSunk()){
 						break;
 					}
@@ -383,6 +390,7 @@ void Executive::run_setup_PvP()
 					}
 					col = charToInt(c_col);
 					firetorpedo(round, col, false);
+					player2torpedo = false;
 					if (shipofplayer1.isSunk()){
 						break;
 					}
@@ -392,6 +400,10 @@ void Executive::run_setup_PvP()
 					cout << "Invalid! Enter row or col: ";
 					cin >> colorrow;
 				}
+			}
+			else if((playershot == "torp" || playershot == "Torp") && player2torpedo == false)
+			{
+				cout << "\nyou shot your torpedo already! ";
 			}
 			else if(playershot == "shot" || playershot == "Shot")
 			{
