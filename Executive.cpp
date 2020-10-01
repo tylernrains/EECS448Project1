@@ -43,7 +43,7 @@ bool Executive::validColumn(char c)
 
 void Executive::run_setup_PvP()
 {
-	
+
 
 	cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 	cin >> shipnum;
@@ -206,14 +206,14 @@ void Executive::run_setup_PvP()
 
 
 	void Executive::run_setup_PvAi(){
-	
+
 	// ##########################################################################
 	// ##########################################################################
-	// 
+	//
 	//
 	//		Enter code here to setup player 1 and AI ships
-	//	    
-	//		
+	//
+	//
 	// ##########################################################################
 	// ##########################################################################
 
@@ -471,5 +471,103 @@ void Executive::run_PvAi() {
 		}
 		round++;
 		WaitEnter();
+	}
+}
+
+void Executive::firetorpedo(int turns, int firepostion, bool iscol)
+{
+	if (turns % 2 == 1)// see if it's player1 or player2
+	{
+		if (iscol == true)
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				if (player2.CheckHit(i, firepostion))
+				{
+					display.hit();
+					shipofplayer2.setHit();
+					player1.UpdateEnemyBoard(i, firepostion, true);
+					if (shipofplayer2.isSunk()){
+						cout << "Player 1 wins!\n";
+						break;
+					}
+					break;
+				}
+				else
+				{
+					player1.UpdateEnemyBoard(i, firepostion, false);
+					player2.my_ships.updateBoard(i, firepostion, 'O');
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				if (player2.CheckHit(i, firepostion))
+				{
+					display.hit();
+					shipofplayer2.setHit();
+					player1.UpdateEnemyBoard(firepostion, i, true);
+					if (shipofplayer2.isSunk()){
+						cout << "Player 1 wins!\n";
+						break;
+					}
+					break;
+				}
+				else
+				{
+					player1.UpdateEnemyBoard(firepostion, i, false);
+					player2.my_ships.updateBoard(firepostion, i, 'O');
+				}
+			}
+		}
+	}
+	else
+	{
+		if (iscol == true) // see if it's a row or col to fire from
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				if (player1.CheckHit(i, firepostion))
+				{
+					display.hit();
+					shipofplayer1.setHit();
+					player2.UpdateEnemyBoard(i, firepostion, true);
+					if (shipofplayer1.isSunk()){
+						cout << "Player 2 wins!\n";
+						break;
+					}
+					break;
+				}
+				else
+				{
+					player2.UpdateEnemyBoard(i, firepostion, false);
+					player1.my_ships.updateBoard(i, firepostion, 'O');
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				if (player1.CheckHit(firepostion, i))
+				{
+					display.hit();
+					shipofplayer1.setHit();
+					player2.UpdateEnemyBoard(firepostion, i, true);
+					if (shipofplayer1.isSunk()){
+						cout << "Player 2 wins!\n";
+						break;
+					}
+					break;
+				}
+				else
+				{
+					player2.UpdateEnemyBoard(firepostion, i, false);
+					player1.my_ships.updateBoard(firepostion, i, 'O');
+				}
+			}
+		}
 	}
 }

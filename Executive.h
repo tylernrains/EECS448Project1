@@ -14,7 +14,7 @@ class Executive
 {
 public:
 
-	Executive(){};		//Constructor 
+	Executive(){};		//Constructor
 	~Executive(){};		//Destructor
 
 	Player player1;			//setup and runtime vars
@@ -28,16 +28,16 @@ public:
 	char c_col;
 
 	int shipnum = 0;
-	
-	
+
+
 	/**
  	* @pre:	None
  	* @post: function to hide player info when switch player1 to 2 or player2 to 1
  	* @param: print 50 blank line when need to switch player
  	**/
 	void WaitEnter();
-	
-	
+
+
 	/**
  	* @post: run the program
 	* @param: Setup Player vs Player Battleship game, the prog gets ship info from players
@@ -74,15 +74,15 @@ public:
 
 
 
-	
+
 	/**
  	* @pre: input the correct char type
  	* @post: convert letters to corresponding numbers
-	* @param: get the letter from the player, then use the formula to convert letter to numbers 
+	* @param: get the letter from the player, then use the formula to convert letter to numbers
 	* @return: return ((toupper(c) - 65))
  	**/
 	int charToInt(char c);
-	
+
 	/**
  	* @pre: input the correct char type
  	* @post: verifying user input if it's within the range of A-I
@@ -90,7 +90,7 @@ public:
 	* @return: return true when the letter is within the range of A-I
  	**/
 	bool validColumn(char c);
-	
+
 	/**
  	* @pre: input the correct int type
  	* @post: add the number of grids occupied by all ships
@@ -98,6 +98,8 @@ public:
 	* @return: return n, the number of grids occupied by all ships
  	**/
   	int numShipCoords(int shipNum);
+
+	void firetorpedo(int turns, int firepostion, bool iscol);
 
 };
 #endif // EXECUTIVE_H
