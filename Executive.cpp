@@ -270,6 +270,9 @@ void Executive::run_setup_PvP()
 						}
 						row --;
 						firetorpedo(round, row, false);
+						if (shipofplayer2.isSunk()){
+							break;
+						}
 					}
 					else if (colorrow == "col" || colorrow == "Col")
 					{
@@ -281,6 +284,9 @@ void Executive::run_setup_PvP()
 						}
 						col = charToInt(c_col);
 						firetorpedo(round, col, true);
+						if (shipofplayer2.isSunk()){
+							break;
+						}
 					}
 					else {
 						cout << "Invalid! Enter row or col: ";
@@ -368,6 +374,9 @@ void Executive::run_setup_PvP()
 						}
 						row --;
 						firetorpedo(round, row, false);
+						if (shipofplayer1.isSunk()){
+							break;
+						}
 					}
 					else if (colorrow == "col" || colorrow == "Col")
 					{
@@ -379,6 +388,9 @@ void Executive::run_setup_PvP()
 						}
 						col = charToInt(c_col);
 						firetorpedo(round, col, true);
+						if (shipofplayer1.isSunk()){
+							break;
+						}
 					}
 					else
 					{
