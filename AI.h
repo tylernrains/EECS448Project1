@@ -14,6 +14,8 @@ using namespace std;
 class AI : public Player
 {
 	public:
+
+		AI();		//Shouldnt be used, needed for testing
 		/**
 		 * Constructor for AI.
 		 * @param difficulty - an int, 1 for easy, 2 for med, 3 for hard.
