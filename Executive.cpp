@@ -587,7 +587,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol)
 				else
 				{
 					player1.UpdateEnemyBoard(i, firepostion, false);
-					if (player2.my_ships.getValue() != 'O')
+					if (player2.my_ships.getValue(i, firepostion) != 'O')
 					{
 						player2.my_ships.updateBoard(firepostion, i, 'O');
 					}
@@ -612,7 +612,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol)
 				else
 				{
 					player1.UpdateEnemyBoard(firepostion, i, false);
-					if (player2.my_ships.getValue() != 'O')
+					if (player2.my_ships.getValue(firepostion, i) != 'O')
 					{
 						player2.my_ships.updateBoard(firepostion, i, 'O');
 					}
@@ -640,7 +640,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol)
 				else
 				{
 					player2.UpdateEnemyBoard(i, firepostion, false);
-					if (player1.my_ships.getValue() != 'O')
+					if (player1.my_ships.getValue(i, firepostion) != 'O')
 					{
 						player1.my_ships.updateBoard(firepostion, i, 'O');
 					}
@@ -665,7 +665,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol)
 				else
 				{
 					player2.UpdateEnemyBoard(firepostion, i, false);
-					if (player1.my_ships.getValue() != 'O')
+					if (player1.my_ships.getValue(firepostion, i) != 'O')
 					{
 						player1.my_ships.updateBoard(firepostion, i, 'O');
 					}
