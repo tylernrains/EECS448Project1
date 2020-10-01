@@ -257,41 +257,38 @@ void Executive::run_setup_PvP()
 				string colorrow = "";
 				cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
 				cin >> colorrow;
-				while(colorrow == "row" || colorrow == "row" || colorrow == "col" || colorrow == "Col")
+				if (colorrow == "row" || colorrow == "row")
 				{
-					if (colorrow == "row" || colorrow == "row")
+					cout << "\nchoose a row between 1 and 9: ";
+					while (!(cin >> row) || row < 1 || row > 9)
 					{
-						cout << "\nchoose a row between 1 and 9: ";
-						while (!(cin >> row) || row < 1 || row > 9)
-						{
-							cout << "Invalid! Must be 1-9!: ";
-							cin.clear();
-							cin.ignore(123, '\n');
-						}
-						row --;
-						firetorpedo(round, row, true);
-						if (shipofplayer2.isSunk()){
-							break;
-						}
+						cout << "Invalid! Must be 1-9!: ";
+						cin.clear();
+						cin.ignore(123, '\n');
 					}
-					else if (colorrow == "col" || colorrow == "Col")
+					row --;
+					firetorpedo(round, row, true);
+					if (shipofplayer2.isSunk()){
+						break;
+					}
+				}
+				else if (colorrow == "col" || colorrow == "Col")
+				{
+					cout << "\nchoose a Column between A and I ";
+					cin >> c_col;
+					while (!validColumn(c_col))
 					{
-						cout << "\nchoose a Column between A and I ";
 						cin >> c_col;
-						while (!validColumn(c_col))
-						{
-							cin >> c_col;
-						}
-						col = charToInt(c_col);
-						firetorpedo(round, col, false);
-						if (shipofplayer2.isSunk()){
-							break;
-						}
 					}
-					else {
-						cout << "Invalid! Enter row or col: ";
-						cin >> colorrow;
+					col = charToInt(c_col);
+					firetorpedo(round, col, false);
+					if (shipofplayer2.isSunk()){
+						break;
 					}
+				}
+				else {
+					cout << "Invalid! Enter row or col: ";
+					cin >> colorrow;
 				}
 			}
 			else if(playershot == "shot" || playershot == "Shot")
@@ -361,42 +358,39 @@ void Executive::run_setup_PvP()
 				string colorrow = "";
 				cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
 				cin >> colorrow;
-				while(colorrow == "row" || colorrow == "row" || colorrow == "col" || colorrow == "Col")
+				if (colorrow == "row" || colorrow == "row")
 				{
-					if (colorrow == "row" || colorrow == "row")
+					cout << "\nchoose a row between 1 and 9: ";
+					while (!(cin >> row) || row < 1 || row > 9)
 					{
-						cout << "\nchoose a row between 1 and 9: ";
-						while (!(cin >> row) || row < 1 || row > 9)
-						{
-							cout << "Invalid! Must be 1-9!: ";
-							cin.clear();
-							cin.ignore(123, '\n');
-						}
-						row --;
-						firetorpedo(round, row, true);
-						if (shipofplayer1.isSunk()){
-							break;
-						}
+						cout << "Invalid! Must be 1-9!: ";
+						cin.clear();
+						cin.ignore(123, '\n');
 					}
-					else if (colorrow == "col" || colorrow == "Col")
+					row --;
+					firetorpedo(round, row, true);
+					if (shipofplayer1.isSunk()){
+						break;
+					}
+				}
+				else if (colorrow == "col" || colorrow == "Col")
+				{
+					cout << "\nchoose a Column between A and I ";
+					cin >> c_col;
+					while (!validColumn(c_col))
 					{
-						cout << "\nchoose a Column between A and I ";
 						cin >> c_col;
-						while (!validColumn(c_col))
-						{
-							cin >> c_col;
-						}
-						col = charToInt(c_col);
-						firetorpedo(round, col, false);
-						if (shipofplayer1.isSunk()){
-							break;
-						}
 					}
-					else
-					{
-						cout << "Invalid! Enter row or col: ";
-						cin >> colorrow;
+					col = charToInt(c_col);
+					firetorpedo(round, col, false);
+					if (shipofplayer1.isSunk()){
+						break;
 					}
+				}
+				else
+				{
+					cout << "Invalid! Enter row or col: ";
+					cin >> colorrow;
 				}
 			}
 			else if(playershot == "shot" || playershot == "Shot")
