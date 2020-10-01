@@ -46,14 +46,12 @@ public:
 	void run_setup_PvP();
 
 
-
 	/**
  	* @post: run the program
 	* @param: Setup Player vs AI Battleship game, the prog gets ship info from player
 	* 		  then gives Executive control to run_PvAi();
  	**/
 	void run_setup_PvAi();
-
 
 
 	/**
@@ -64,15 +62,12 @@ public:
 	void run_PvP();
 
 
-
 	/**
  	* @post: run the program
 	* @param: play the Battleship game, players will fire at the AI ships until there
 	* 		  is a winner
  	**/
 	void run_PvAi();
-
-
 
 
 	/**
