@@ -255,13 +255,13 @@ void Executive::run_setup_PvP()
 			if (playershot == "torp" || playershot == "Torp")
 			{
 				string colorrow = "";
-				cout << "\nEnter col to shoot from a column and row to shoot from a row";
+				cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
 				cin >> colorrow;
-				while(colorrow == "row" || colorrow == "row" || colorrow == "col" || colorrow == "Col")
-				{
+				//while(colorrow == "row" || colorrow == "row" || colorrow == "col" || colorrow == "Col")
+				//{
 					if (colorrow == "row" || colorrow == "row")
 					{
-						cout << "\nchoose a row between 1 and 9 ";
+						cout << "\nchoose a row between 1 and 9: ";
 						while (!(cin >> row) || row < 1 || row > 9)
 						{
 							cout << "Invalid! Must be 1-9!: ";
@@ -286,7 +286,7 @@ void Executive::run_setup_PvP()
 						cout << "Invalid! Enter row or col: ";
 						cin >> colorrow;
 					}
-				}
+				//}
 			}
 			else if(playershot == "shot" || playershot == "Shot")
 			{
@@ -353,13 +353,13 @@ void Executive::run_setup_PvP()
 			if (playershot == "torp" || playershot == "Torp")
 			{
 				string colorrow = "";
-				cout << "\nEnter col to shoot from a column and row to shoot from a row";
+				cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
 				cin >> colorrow;
 				//while(colorrow == "row" || colorrow == "row" || colorrow == "col" || colorrow == "Col")
 				//{
 					if (colorrow == "row" || colorrow == "row")
 					{
-						cout << "\nchoose a row between 1 and 9 ";
+						cout << "\nchoose a row between 1 and 9: ";
 						while (!(cin >> row) || row < 1 || row > 9)
 						{
 							cout << "Invalid! Must be 1-9!: ";
