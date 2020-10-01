@@ -359,7 +359,7 @@ void Executive::run_setup_PvP()
 
 			cin >> playershot;
 
-			if (playershot == "torp" || playershot == "Torp") && player2torpedo == true)
+			if ((playershot == "torp" || playershot == "Torp") && player2torpedo == true)
 			{
 				string colorrow = "";
 				cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
@@ -375,7 +375,7 @@ void Executive::run_setup_PvP()
 					}
 					row --;
 					firetorpedo(round, row, true);
-						player2torpedo = false;
+					player2torpedo = false;
 					if (shipofplayer1.isSunk()){
 						break;
 					}
