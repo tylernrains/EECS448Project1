@@ -44,22 +44,19 @@ bool Executive::validColumn(char c)
 void Executive::run_setup_PvP()
 {
 	cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
-	cin >> shipnum;
-	player1.SetNumShips(shipnum); //decalers number of ships for both players
-	shipofplayer1.setShipNumber(numShipCoords(shipnum));
-
-
-	if (shipnum < 1 || shipnum > 5)
-	{
-		while (!(cin >> shipnum))
-		{
+	// This will be the number of ships used for both players.
+	
+	do {
+		cin >> shipnum;
+		if (shipnum < 1 || shipnum > 5) {
 			cout << "Invalid! Must be 1-5!: ";
 			cin.clear();
 			cin.ignore(123, '\n');
 		}
-		//cout << "Invaild number of ships!\n";
-		//goto chooseShipNum1;
-	}
+	} while (shipnum < 1 || shipnum > 5);
+
+	player1.SetNumShips(shipnum);
+	shipofplayer1.setShipNumber(numShipCoords(shipnum));
 
 	for (int i = 1; i <= shipnum; i++)
 	{
@@ -129,8 +126,7 @@ void Executive::run_setup_PvP()
 	cout <<" Switch to Player 2 Setting!\n";
 	WaitEnter();
 
-	//cout << "Player 2, how many ships do you want to place in the grid (choose from 1 to 5)? ";
-	//cin >> shipnum;
+	/*
 	player2.SetNumShips(shipnum);
 	shipofplayer2.setShipNumber(numShipCoords(shipnum));
 
@@ -197,7 +193,7 @@ void Executive::run_setup_PvP()
 	display.friendlyBoard(player2.my_ships.m_board);
 	WaitEnter();
 
-	run_PvP();
+	run_PvP();*/
 
 }
 
