@@ -608,31 +608,40 @@ void Executive::run_PvAi() {
 		else
 		{
 			cout << "BattleshipAI's turn!\n";
-			//cout << "You have been hit " << shipofplayer2.getHit() << " times\n";
-			//Print boards before fire
-			//display.matchFrame(2, player2.enemy_ships.m_board, player2.my_ships.m_board);
-
+			
 			chooseFireAI:
-			//cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
-			//while (!(cin >> row) || row < 1 || row > 9)
-			//{
-			//	cout << "Invalid! Must be 1-9!: ";
-			//	cin.clear();
-			//	cin.ignore(123, '\n');
-			//}
+			
 			std::string AIshot = "";
-			AIshot = computer.fireShot();
+			
+			if(computer.getDifficulty() == 3){	//AI is set to Hard
 
-			row = AIshot[0];
-			c_col = AIshot[1];
+				while(true){
+
+					AIshot = computer.fireShot();
+					row = AIshot[0];
+					c_col = AIshot[1];
+
+					col = charToInt(c_col);
+					row --;
+
+						if (player1.Only_CheckHit(row, col) == true){
+
+						break;
+
+						}
+				}
 
 
-			while (!validColumn(c_col))
-			{
-				cin >> c_col;
-			}
-			col = charToInt(c_col);
-			row --;
+			} else {	//AI is not set to Hard
+
+				AIshot = computer.fireShot();
+
+				row = AIshot[0];
+				c_col = AIshot[1];
+
+				col = charToInt(c_col);
+				row --;
+				}
 
 			if (player1.CheckHit(row, col))
 			{

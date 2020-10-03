@@ -57,6 +57,15 @@ class Player
 		* @return: returns true if a ship has been hit, false if not
  		**/
 		bool CheckHit(int row, int col);
+
+
+		/**
+ 		* @pre: 'row' & 'col' must be between 0 & 8, inclusive (Same thing as ^, but no update)
+		* @post: None
+		* @param: row: which row to check; col: which column to check
+		* @return: returns true if a ship can be hit, false if not
+ 		**/
+		bool Only_CheckHit(int row, int col);
 				
 		/**
  		* @pre: row and col must be between 0 & 8, inclusive

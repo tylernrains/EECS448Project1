@@ -31,6 +31,13 @@ class AI : public Player
 		 */
 		string fireShot();
 
+		/**
+		 * Returns AI difficutly.
+		 * @post returns an int: 1, 2, or 3
+		 */
+		int getDifficulty();
+
+
 	private:
 
 		int m_difficulty;
