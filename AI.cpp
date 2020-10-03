@@ -92,20 +92,24 @@ string AI::shoot1() {
 string AI::shoot2() {
 	string coord = "";
 
-	if (!isPrevShotHit() && !m_trackingHit) {
-		// Storing the shot coords
-		m_prevShot[0] = rand() % 9;
-		m_prevShot[1] = rand() % 9;
-	} else if (isPrevShotHit()) {
-		m_trackingHit = true;
-		// Storing the coords of the original hit
-		m_origHit[0] = m_prevShot[0];
-		m_origHit[1] = m_prevShot[1];
+	m_prevShotHit = isPrevShotHit();
+
+	if (!m_trackingHit) {
+		if (!m_prevShotHit) {
+			// Storing the shot coords
+			m_prevShot[0] = rand() % 9;
+			m_prevShot[1] = rand() % 9;
+		} else {
+			m_trackingHit = true;
+			// Storing the coords of the original hit
+			m_origHit[0] = m_prevShot[0];
+			m_origHit[1] = m_prevShot[1];
+		}
 	}
 
 	if (m_trackingHit) {
 		if (m_direction == 0) { // Trying up
-			if (isPrevShotHit()) {
+			if (m_prevShotHit) {
 				// Storing coords of next shot
 				m_prevShot[0] = m_prevShot[0]-1;
 
@@ -116,7 +120,7 @@ string AI::shoot2() {
 		}
 
 		if (m_direction == 1) { // Trying left
-			if (isPrevShotHit()) {
+			if (m_prevShotHit) {
 				m_prevShot[1] = m_prevShot[1]-1;
 
 				if (m_prevShot[1] < 0)
@@ -126,7 +130,7 @@ string AI::shoot2() {
 		}
 
 		if (m_direction == 2) { // Trying down
-			if (isPrevShotHit()) {
+			if (m_prevShotHit) {
 				m_prevShot[0] = m_prevShot[0]+1;
 
 				if (m_prevShot[0] >= 9)
@@ -136,7 +140,7 @@ string AI::shoot2() {
 		}
 
 		if (m_direction == 3) { // Trying right
-			if (isPrevShotHit()) {
+			if (m_prevShotHit) {
 				m_prevShot[1] = m_prevShot[1]+1;
 
 				if (m_prevShot[1] >= 9)
@@ -164,10 +168,11 @@ void AI::incrementDirection() {
 	m_direction++;
 	m_prevShot[0] = m_origHit[0];
 	m_prevShot[1] = m_origHit[1];
+	m_prevShotHit = true;
 }
 
 bool AI::isPrevShotHit() {
-	// TODO change so it's not looking for an X, b/c this leads it to re-do hit tracking on previous hits.
+
 	if (m_prevShot[0] < 9 && m_prevShot[0] >= 0 && m_prevShot[1] < 9 && m_prevShot[1] >= 0) {
 		if (enemy_ships.getValue(m_prevShot[0], m_prevShot[1]) == 'X') {
 			enemy_ships.updateBoard(m_prevShot[0], m_prevShot[1], 'O');
