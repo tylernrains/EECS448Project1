@@ -300,8 +300,7 @@ void Executive::run_setup_PvAi()
 	//place the AI's ships
 	for (int i = 1; i <= shipnum; ++i)
 	{
-		computer.PlaceShip(i, std::rand() % 9, std::rand() % 9, arr_directions[std::rand() % 4]);
-	}
+		while (!computer.PlaceShip(i, std::rand() % 9, std::rand() % 9, arr_directions[std::rand() % 4])) {}		}
 
 	//print last time so player can see 1x5 ship placed
 	display.friendlyBoard(computer.my_ships.m_board);
