@@ -7,6 +7,7 @@
 #include "display.h"
 #include "Ship.h"
 
+#include <time.h>
 #include <iostream>
 using namespace std;
 

@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
 #include "Executive.h"
+#include <time.h>
 
 int main(){
+
+	srand(time(NULL)); //initalizes a random seed at the start of the program
 
 	std::string horizontal_bar = "-----------------------------------------------------------------------\n";
 	std::string battleship_text = " 		            BATTLESHIP          			  \n";

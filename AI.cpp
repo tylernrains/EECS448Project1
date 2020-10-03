@@ -16,7 +16,7 @@ AI::AI(){
 	m_direction = 0;
 	m_prevShot = nullptr;
 	m_origHit = nullptr;
-
+	m_trackingHit = false;
 }
 
 AI::AI(int difficulty) {
@@ -48,6 +48,22 @@ AI::~AI() {
 		delete[] m_prevShot;
 	if (m_origHit != nullptr)
 		delete[] m_origHit;
+}
+
+void AI::setDifficulty(int difficulty)
+{
+	m_difficulty = difficulty;
+	if (m_difficulty == 2)
+	{
+		m_prevShot = new int[2];
+		m_prevShot[0] = m_prevShot[1] = 10;
+		m_origHit = new int[2];
+	}
+	else
+	{
+		m_prevShot = nullptr;
+		m_origHit = nullptr;
+	}	
 }
 
 string AI::fireShot() {
@@ -154,6 +170,7 @@ bool AI::isPrevShotHit() {
 		return false;
 }
 
+
 string AI::shoot3() { //Hard Difficulty
 	
 	string coord = "";
@@ -190,5 +207,6 @@ int AI::getDifficulty(){
 	return m_difficulty;
 
 }
+
 
 
