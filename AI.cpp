@@ -32,6 +32,15 @@ AI::AI(int difficulty) {
 		m_prevShot = nullptr;
 		m_origHit = nullptr;
 	}
+
+	if (m_difficulty == 3) {
+
+		m_prevShot = new int[2];
+		m_prevShot[0] = 1;
+		m_prevShot[1] = 65;		
+
+	}
+
 }
 
 AI::~AI() {
@@ -161,7 +170,43 @@ bool AI::isPrevShotHit() {
 		return false;
 }
 
-string AI::shoot3() {
-	// TODO fill in method definition
-	return "";
+
+string AI::shoot3() { //Hard Difficulty
+	
+	string coord = "";
+
+	if(m_trackingHit == false){ // m_trackingHit is only used in the hardai for the sake
+								// of seeing if it is the first shot it makes. It does
+								// nothing else after. It does not track hits at all.
+		m_trackingHit = true;
+		return "1A";
+	}
+
+
+	if (m_prevShot[0] == 9){	//if end of row, start next row
+
+		m_prevShot[0] = 0;
+		m_prevShot[1] += 1;	
+
+	} else {					//else add one to col number
+
+		m_prevShot[0]++;
+
+	}
+
+	coord[0] = m_prevShot[0];		//actual int - col
+	coord[1] = char(m_prevShot[1]);	//ACII value - row
+
+
+	return coord;
 }
+
+
+int AI::getDifficulty(){
+
+	return m_difficulty;
+
+}
+
+
+

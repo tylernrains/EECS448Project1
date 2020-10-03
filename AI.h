@@ -37,6 +37,13 @@ class AI : public Player
 		 */
 		void setDifficulty(int difficulty);				
 
+    /*
+		 * Returns AI difficutly.
+		 * @post returns an int: 1, 2, or 3
+		 */
+		int getDifficulty();
+
+
 	private:
 
 		int m_difficulty;
