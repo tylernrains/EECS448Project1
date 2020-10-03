@@ -31,6 +31,12 @@ class AI : public Player
 		 */
 		string fireShot();
 
+		/**
+		 * Sets the AI's difficulty
+		 * @post The AI's difficulty is changed.
+		 */
+		void setDifficulty(int difficulty);				
+
 	private:
 
 		int m_difficulty;
@@ -71,7 +77,6 @@ class AI : public Player
 		 * @post returns a string of length 2 that contains the coordinates to fire at.
 		 */
 		string shoot3();
-
 };
 
 #endif
