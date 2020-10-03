@@ -349,7 +349,7 @@ void Executive::run_PvP()
 					cin >> colorrow;
 				} while (colorrow != "row" && colorrow != "Row" && colorrow != "col" && colorrow != "Col");
 
-				if (colorrow != "row" || colorrow != "Row") // fires a torp from a row
+				if (colorrow == "row" || colorrow == "Row") // fires a torp from a row
 				{
 					cout << "\nchoose a row between 1 and 9: ";
 					while (!(cin >> row) || row < 1 || row > 9)
@@ -589,7 +589,7 @@ void Executive::run_PvAi()
 					cin >> colorrow;
 				} while (colorrow != "row" && colorrow != "Row" && colorrow != "col" && colorrow != "Col");
 
-				if (colorrow != "row" || colorrow != "Row")
+				if (colorrow == "row" || colorrow == "Row")
 				{
 					cout << "\nchoose a row between 1 and 9: ";
 					while (!(cin >> row) || row < 1 || row > 9)
@@ -604,7 +604,7 @@ void Executive::run_PvAi()
 						break;
 					}
 				}
-				else if (colorrow != "col" || colorrow != "Col")
+				else if (colorrow == "col" || colorrow == "Col")
 				{
 					cout << "\nchoose a Column between A and I ";
 					cin >> c_col;
