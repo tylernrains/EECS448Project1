@@ -342,7 +342,7 @@ void Executive::run_PvP()
 			if ((playershot == "torp" || playershot == "Torp") && player1torpedo == true)
 			{
 				string colorrow = "";
-				
+
 				do
 				{
 					cout << "\nEnter col to shoot from a column and row to shoot from a row: ";
@@ -857,7 +857,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol, bool playerV
 						display.hit();
 						shipofai.setHit();
 						player1.UpdateEnemyBoard(i, firepostion, true);
-						if (shipofplayer2.isSunk()){
+						if (shipofai.isSunk()){
 							cout << "Player 1 wins!\n";
 							break;
 						}
@@ -905,7 +905,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol, bool playerV
 						shipofplayer1.setHit();
 						computer.UpdateEnemyBoard(i, firepostion, true);
 						if (shipofplayer1.isSunk()){
-							cout << "Player 2 wins!\n";
+							cout << "AI wins!\n";
 							break;
 						}
 						break;
@@ -927,7 +927,7 @@ void Executive::firetorpedo(int turns, int firepostion, bool iscol, bool playerV
 						shipofplayer1.setHit();
 						computer.UpdateEnemyBoard(firepostion, i, true);
 						if (shipofplayer1.isSunk()){
-							cout << "Player 2 wins!\n";
+							cout << "AI wins!\n";
 							break;
 						}
 						break;
