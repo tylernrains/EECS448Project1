@@ -59,8 +59,12 @@ void AI::setDifficulty(int difficulty)
 		m_prevShot[0] = m_prevShot[1] = 10;
 		m_origHit = new int[2];
 	}
-	else
-	{
+	else if (m_difficulty == 3) {
+		m_prevShot = new int[2];
+		m_prevShot[0] = 1;
+		m_prevShot[1] = 65;
+		m_origHit = nullptr;
+	} else	{
 		m_prevShot = nullptr;
 		m_origHit = nullptr;
 	}	
@@ -164,9 +168,13 @@ void AI::incrementDirection() {
 
 bool AI::isPrevShotHit() {
 	// TODO change so it's not looking for an X, b/c this leads it to re-do hit tracking on previous hits.
-	if (m_prevShot[0] < 9 && m_prevShot[0] >= 0 && m_prevShot[1] < 9 && m_prevShot[1] >= 0)
-		return (enemy_ships.getValue(m_prevShot[0], m_prevShot[1]) == 'X');
-	else
+	if (m_prevShot[0] < 9 && m_prevShot[0] >= 0 && m_prevShot[1] < 9 && m_prevShot[1] >= 0) {
+		if (enemy_ships.getValue(m_prevShot[0], m_prevShot[1]) == 'X') {
+			enemy_ships.updateBoard(m_prevShot[0], m_prevShot[1], 'O');
+			return true;
+		} else
+			return false;
+	} else
 		return false;
 }
 

@@ -297,6 +297,9 @@ void Executive::run_setup_PvAi()
 	//print last time so player can see 1x5 ship placed
 	display.friendlyBoard(player1.my_ships.m_board);
 
+	computer.SetNumShips(shipnum);
+	shipofai.setShipNumber(numShipCoords(shipnum));
+
 	//place the AI's ships
 	for (int i = 1; i <= shipnum; ++i)
 	{
@@ -663,29 +666,31 @@ void Executive::run_PvAi()
 						break;
 					}
 				}
-			}
-			else if(computer.my_ships.getValue(row, col) == 'X')
-			{
-				//cout <<player2.my_ships.getValue(row, col);
-				cout << "\n\nYou've already hit that spot!\n";
-				goto chooseFire1;
-			}
-			else if(player1.enemy_ships.getValue(row, col) == 'O')
-			{
-				cout <<"\n\nYou've already fire this point!\n";
-				goto chooseFire1;
-			}
-			else
-			{
-				display.miss();
-				player1.UpdateEnemyBoard(row, col, false);
-				computer.my_ships.updateBoard(row, col, 'O');
+				else if(computer.my_ships.getValue(row, col) == 'X')
+				{
+					cout << computer.my_ships.getValue(row, col);
+					cout << "\n\nYou've already hit that spot!\n";
+					goto chooseFire1;
+				}
+				else if(player1.enemy_ships.getValue(row, col) == 'O')
+				{
+					cout <<"\n\nYou've already fire this point!\n";
+					goto chooseFire1;
+				}
+				else
+				{
+					display.miss();
+					player1.UpdateEnemyBoard(row, col, false);
+					computer.my_ships.updateBoard(row, col, 'O');
+				}
 			}
 		}
 		else
 		{
 			cout << "BattleshipAI's turn!\n";
-			
+			// TODO remove the following display. it is used only for testing
+			display.matchFrame(2, computer.enemy_ships.m_board, computer.my_ships.m_board);
+
 			chooseFireAI:
 			
 			std::string AIshot = "";
@@ -701,11 +706,9 @@ void Executive::run_PvAi()
 					col = charToInt(c_col);
 					row --;
 
-						if (player1.Only_CheckHit(row, col) == true){
-
+					if (player1.Only_CheckHit(row, col) == true){
 						break;
-
-						}
+					}
 				}
 
 
@@ -718,7 +721,7 @@ void Executive::run_PvAi()
 
 				col = charToInt(c_col);
 				row --;
-				}
+			}
 
 			if (player1.CheckHit(row, col))
 			{
@@ -741,6 +744,7 @@ void Executive::run_PvAi()
 			}
 			else
 			{
+				cout << AIshot << '\n';
 				display.miss();
 				computer.UpdateEnemyBoard(row, col, false);
 				player1.my_ships.updateBoard(row, col, 'O');
