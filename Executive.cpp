@@ -686,7 +686,7 @@ void Executive::run_PvAi()
 					c_col = AIshot[1];
 
 					col = charToInt(c_col);
-					row --;
+					row--;
 
 					if (player1.Only_CheckHit(row, col) == true){
 						break;
@@ -698,11 +698,11 @@ void Executive::run_PvAi()
 
 				AIshot = computer.fireShot();
 
-				row = AIshot[0];
+				row = (int)(AIshot[0]-'1');
 				c_col = AIshot[1];
 
 				col = charToInt(c_col);
-				row --;
+				// don't need the row-- here. Conversion is good without it.
 			}
 
 			if (player1.CheckHit(row, col))
