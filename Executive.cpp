@@ -101,7 +101,7 @@ void Executive::run_setup_PvP()
 				}
 
 			chooseShipDirection1:
-				cout << "Up, Down, Left, or Right from pivot? (U, D, L, R): ";
+				cout << "Orient the ship Up, Down, Left, or Right from pivot? (U, D, L, R): ";
 				cin >> direction;
 			}
 			col = charToInt(c_col); // convert char to int
@@ -123,10 +123,10 @@ void Executive::run_setup_PvP()
 	//print last time so player can see 1x5 ship placed
 	display.friendlyBoard(player1.my_ships.m_board);
 
-	cout <<" Switch to Player 2 Setting!\n";
+	cout <<"Switch to Player 2 Setup!\n";
 	WaitEnter();
 
-	/*
+	
 	player2.SetNumShips(shipnum);
 	shipofplayer2.setShipNumber(numShipCoords(shipnum));
 
@@ -171,7 +171,7 @@ void Executive::run_setup_PvP()
 					cin >> c_col;
 				}
 			chooseShipDirection2:
-				cout << "Up, Down, Left, or Right from pivot? (U, D, L, R): ";
+				cout << "Orient the ship Up, Down, Left, or Right from pivot? (U, D, L, R): ";
 				cin >> direction;
 			}
 			col = charToInt(c_col);
@@ -193,7 +193,7 @@ void Executive::run_setup_PvP()
 	display.friendlyBoard(player2.my_ships.m_board);
 	WaitEnter();
 
-	run_PvP();*/
+	run_PvP();
 
 }
 
@@ -202,27 +202,23 @@ void Executive::run_setup_PvAi()
 	char arr_directions[4] = {'U', 'D', 'L', 'R'};
 
 	cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
-	cin >> shipnum;
-	player1.SetNumShips(shipnum); //declares number of ships for both players
-	shipofplayer1.setShipNumber(numShipCoords(shipnum));
-
-	if (shipnum < 1 || shipnum > 5)
-	{
-		while (!(cin >> shipnum))
-		{
+	// This will be the number of ships for both player 1 and computer
+	do {
+		cin >> shipnum;
+		if (shipnum < 1 || shipnum > 5) {
 			cout << "Invalid! Must be 1-5!: ";
 			cin.clear();
 			cin.ignore(123, '\n');
 		}
-	}	
+	} while (shipnum < 1 || shipnum > 5);
 
 	//sets the AI's difficulty
 	int difficulty = 0;
-	std::cout << "What difficulty would you like the AI to be (1 = easy, 2 = medium, 3 = hard)?: ";
+	std::cout << "What difficulty would you like the AI to be? (1 = easy, 2 = medium, 3 = hard): ";
 	std::cin >> difficulty;
 	while (difficulty < 1 || difficulty > 3)
 	{
-		std::cout << "That is not a valid difficulty, try again (1 = easy, 2 = medium, 3 = hard): ";
+		std::cout << "That is not a valid difficulty, try again. (1 = easy, 2 = medium, 3 = hard): ";
 		std::cin >> difficulty; 
 	}
 	computer.setDifficulty(difficulty);
@@ -271,7 +267,7 @@ void Executive::run_setup_PvAi()
 				}
 
 			chooseShipDirection1:
-				cout << "Up, Down, Left, or Right from pivot? (U, D, L, R): ";
+				cout << "Orient the ship Up, Down, Left, or Right from pivot? (U, D, L, R): ";
 				cin >> direction;
 			}
 			col = charToInt(c_col); // convert char to int
@@ -302,6 +298,7 @@ void Executive::run_setup_PvAi()
 		while (!computer.PlaceShip(i, std::rand() % 9, std::rand() % 9, arr_directions[std::rand() % 4])) {}		}
 
 	//print last time so player can see 1x5 ship placed
+	//TODO remove this before we turn in project. Used for testing.
 	display.friendlyBoard(computer.my_ships.m_board);
 
 	std::cout << "\nThe AI's ships have been placed.\n";
@@ -324,7 +321,7 @@ void Executive::run_PvP()
 		if (round % 2 == 1)
 		{
 			cout << "Player 1's turn!\n";
-			cout << "You have been hit " << shipofplayer1.getHit() << " times\n";
+			cout << "You have been hit " << shipofplayer1.getHit() << " times.\n";
 			//Print boards before fire
 			display.matchFrame(1, player1.enemy_ships.m_board, player1.my_ships.m_board);
 
@@ -388,10 +385,9 @@ void Executive::run_PvP()
 			else if(playershot == "shot" || playershot == "Shot")
 			{
 				chooseFire1:
-				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
+				cout << "\nChoose the coordinate that you want to fire at (row(1 - 9) col(A - I)): ";
 				while (!(cin >> row) || row < 1 || row > 9)
 				{
-					// cout <<"row = "<<row<<'\n';
 					cout << "Invalid! Must be 1-9!: ";
 					cin.clear();
 					cin.ignore(123, '\n');
@@ -402,7 +398,7 @@ void Executive::run_PvP()
 					cin >> c_col;
 				}
 				col = charToInt(c_col);
-				row --;
+				row--;
 
 
 				if (player2.CheckHit(row, col))
@@ -424,7 +420,7 @@ void Executive::run_PvP()
 				}
 				else if(player1.enemy_ships.getValue(row, col) == 'O')
 				{
-					cout <<"\n\nYou've already fire this point!\n";
+					cout <<"\n\nYou've already fired at that spot!\n";
 					goto chooseFire1;
 				}
 				else
@@ -438,7 +434,7 @@ void Executive::run_PvP()
 		else
 		{
 			cout << "Player 2's turn!\n";
-			cout << "You have been hit " << shipofplayer2.getHit() << " times\n";
+			cout << "You have been hit " << shipofplayer2.getHit() << " times.\n";
 			//Print boards before fire
 			display.matchFrame(2, player2.enemy_ships.m_board, player2.my_ships.m_board);
 
@@ -502,7 +498,7 @@ void Executive::run_PvP()
 			else if(playershot == "shot" || playershot == "Shot")
 			{
 				chooseFire2:
-				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
+				cout << "\nChoose the coordinate that you want to fire at (row(1 - 9) col(A - I)): ";
 				while (!(cin >> row) || row < 1 || row > 9)
 				{
 					cout << "Invalid! Must be 1-9!: ";
@@ -536,7 +532,7 @@ void Executive::run_PvP()
 				}
 				else if(player2.enemy_ships.getValue(row, col) == 'O')
 				{
-					cout <<"\n\nYou've already fire this point!\n";
+					cout <<"\n\nYou've already fired at that spot!\n";
 					goto chooseFire2;
 				}
 				else
@@ -563,7 +559,7 @@ void Executive::run_PvAi()
 
 	int round = 1;
 	bool player1torpedo = true;
-	//bool player2torpedo = true; need to add is for the AI 
+	//bool player2torpedo = true; TODO need to add is for the AI 
 	string playershot = "";
 
 	while (!shipofplayer1.isSunk() || !shipofai.isSunk())
@@ -571,7 +567,7 @@ void Executive::run_PvAi()
 		if (round % 2 == 1)
 		{
 			cout << "Player 1's turn!\n";
-			cout << "You have been hit " << shipofplayer1.getHit() << " times\n";
+			cout << "You have been hit " << shipofplayer1.getHit() << " times.\n";
 			//Print boards before fire
 			display.matchFrame(1, player1.enemy_ships.m_board, player1.my_ships.m_board);
 
