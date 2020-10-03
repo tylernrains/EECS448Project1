@@ -320,7 +320,7 @@ void Executive::run_PvP()
 	int round = 1;
 	bool player1torpedo = true;
 	bool player2torpedo = true;
-	char torpedodirection = "";
+	string torpedodirection = "";
 	string playershot = "";
 
 	while (!shipofplayer1.isSunk() || !shipofplayer2.isSunk())
@@ -590,7 +590,7 @@ void Executive::run_PvAi()
 	int round = 1;
 	bool player1torpedo = true;
 	//bool player2torpedo = true; TODO need to add is for the AI
-	char torpedodirection = "";
+	string torpedodirection = "";
 	string playershot = "";
 
 	while (!shipofplayer1.isSunk() || !shipofai.isSunk())
@@ -788,7 +788,7 @@ void Executive::run_PvAi()
 }
 
 
-void Executive::firetorpedo(char direction, int firepostion, bool iscol, Player& friendly, Player& enemy, Ship& enemyShip)
+void Executive::firetorpedo(string direction, int firepostion, bool iscol, Player& friendly, Player& enemy, Ship& enemyShip)
 {
 	if(direction == "f" || direction == "d")
 	{
