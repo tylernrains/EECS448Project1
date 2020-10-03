@@ -835,7 +835,7 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 	{
 		if (iscol == true)// see if it's a row or col to fire from
 		{
-			for (int i = 9; i > 0; i--)
+			for (int i = 9; i >= 0; i--)
 			{
 				if (enemy.CheckHit(i, firepostion))
 				{
@@ -854,7 +854,7 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 		}
 		else
 		{
-			for (int i = 9; i > 0; i--)
+			for (int i = 9; i >= 0; i--)
 			{
 				if (enemy.CheckHit(firepostion, i))
 				{
