@@ -45,7 +45,7 @@ void Executive::run_setup_PvP()
 {
 	cout << "How many ships do you want to place in the grid (choose from 1 to 5)? ";
 	// This will be the number of ships used for both players.
-	
+
 	do {
 		cin >> shipnum;
 		if (shipnum < 1 || shipnum > 5) {
@@ -126,7 +126,7 @@ void Executive::run_setup_PvP()
 	cout <<"Switch to Player 2 Setup!\n";
 	WaitEnter();
 
-	
+
 	player2.SetNumShips(shipnum);
 	shipofplayer2.setShipNumber(numShipCoords(shipnum));
 
@@ -223,7 +223,7 @@ void Executive::run_setup_PvAi()
 		std::cin >> difficulty;
 	}
 	computer.setDifficulty(difficulty);
-	
+
 	//Place player 1's ships
 	for (int i = 1; i <= shipnum; i++)
 	{
@@ -320,6 +320,7 @@ void Executive::run_PvP()
 	int round = 1;
 	bool player1torpedo = true;
 	bool player2torpedo = true;
+	char torpedodirection = "";
 	string playershot = "";
 
 	while (!shipofplayer1.isSunk() || !shipofplayer2.isSunk())
@@ -361,7 +362,15 @@ void Executive::run_PvP()
 						cin.ignore(123, '\n');
 					}
 					row--;
-					firetorpedo(row, false, player1, player2, shipofplayer2);
+
+					do
+					{
+						cout << "\nEnter what direction you want to fire you torpedo";
+						cout << "\n'f' for forwards and 'b' for backwards: ";
+						cin >> torpedodirection;
+					} while (torpedodirection != "f" && torpedodirection != "b");
+
+					firetorpedo(torpedodirection, row, false, player1, player2, shipofplayer2);
 					if (shipofplayer2.isSunk()){
 						cout << "Player 1 wins!\n";
 						break;
@@ -376,7 +385,15 @@ void Executive::run_PvP()
 						cin >> c_col;
 					}
 					col = charToInt(c_col);
-					firetorpedo(col, true, player1, player2, shipofplayer2);
+
+					do
+					{
+						cout << "\nEnter what direction you want to fire you torpedo";
+						cout << "\n'u' for upwards and 'd' for downwards: ";
+						cin >> torpedodirection;
+					} while (torpedodirection != "u" && torpedodirection != "d");
+
+					firetorpedo(torpedodirection, col, true, player1, player2, shipofplayer2);
 					if (shipofplayer2.isSunk()){
 						cout << "Player 1 wins!\n";
 						break;
@@ -468,7 +485,15 @@ void Executive::run_PvP()
 						cin.ignore(123, '\n');
 					}
 					row--;
-					firetorpedo(row, false, player2, player1, shipofplayer1);
+
+					do
+					{
+						cout << "\nEnter what direction you want to fire you torpedo";
+						cout << "\n'f' for forwards and 'b' for backwards: ";
+						cin >> torpedodirection;
+					} while (torpedodirection != "f" && torpedodirection != "b");
+
+					firetorpedo(torpedodirection, row, false, player2, player1, shipofplayer1);
 					if (shipofplayer1.isSunk()){
 						cout << "Player 2 wins!\n";
 						break;
@@ -483,7 +508,15 @@ void Executive::run_PvP()
 						cin >> c_col;
 					}
 					col = charToInt(c_col);
-					firetorpedo(col, true, player2, player1, shipofplayer1);
+
+					do
+					{
+						cout << "\nEnter what direction you want to fire you torpedo";
+						cout << "\n'u' for upwards and 'd' for downwards: ";
+						cin >> torpedodirection;
+					} while (torpedodirection != "u" && torpedodirection != "d");
+
+					firetorpedo(torpedodirection, col, true, player2, player1, shipofplayer1);
 					if (shipofplayer1.isSunk()){
 						cout << "Player 2 wins!\n";
 						break;
@@ -556,7 +589,8 @@ void Executive::run_PvAi()
 
 	int round = 1;
 	bool player1torpedo = true;
-	//bool player2torpedo = true; TODO need to add is for the AI 
+	//bool player2torpedo = true; TODO need to add is for the AI
+	char torpedodirection = "";
 	string playershot = "";
 
 	while (!shipofplayer1.isSunk() || !shipofai.isSunk())
@@ -567,13 +601,13 @@ void Executive::run_PvAi()
 			cout << "You have been hit " << shipofplayer1.getHit() << " times.\n";
 			//Print boards before fire
 			display.matchFrame(1, player1.enemy_ships.m_board, player1.my_ships.m_board);
-			
+
 			if (player1torpedo == true) {
 				do
 				{
 					cout << "\nDo you want to fire a torpedo or a regular shot?";
 					cout << "\nEnter 'torp' for the torpedo and 'shot' for the regular shot: ";
-	
+
 					cin >> playershot;
 				} while(playershot != "torp" && playershot != "shot");
 			} else // The player doesn't have a torpedo available.
@@ -599,7 +633,15 @@ void Executive::run_PvAi()
 						cin.ignore(123, '\n');
 					}
 					row--;
-					//firetorpedo(round, row, false, true);
+
+					do
+					{
+						cout << "\nEnter what direction you want to fire you torpedo";
+						cout << "\n'f' for forwards and 'b' for backwards: ";
+						cin >> torpedodirection;
+					} while (torpedodirection != "f" && torpedodirection != "b");
+
+					firetorpedo(torpedodirection, row, false, player1, computer, shipofai);
 					if (shipofai.isSunk()){
 						cout << "Player 1 wins!\n";
 						break;
@@ -614,7 +656,15 @@ void Executive::run_PvAi()
 						cin >> c_col;
 					}
 					col = charToInt(c_col);
-					firetorpedo(col, true, player1, computer, shipofai);
+
+					do
+					{
+						cout << "\nEnter what direction you want to fire you torpedo";
+						cout << "\n'u' for upwards and 'd' for downwards: ";
+						cin >> torpedodirection;
+					} while (torpedodirection != "u" && torpedodirection != "d");
+
+					firetorpedo(torpedodirection, col, true, player1, computer, shipofai);
 					if (shipofai.isSunk()){
 						cout << "Player 1 wins!\n";
 						break;
@@ -738,45 +788,88 @@ void Executive::run_PvAi()
 }
 
 
-void Executive::firetorpedo(int firepostion, bool iscol, Player& friendly, Player& enemy, Ship& enemyShip)
+void Executive::firetorpedo(char direction, int firepostion, bool iscol, Player& friendly, Player& enemy, Ship& enemyShip)
 {
-
-	if (iscol == true)// see if it's a row or col to fire from
+	if(direction == "f" || direction == "d")
 	{
-		for (int i = 0; i < 9; i++)
+		if (iscol == true)// see if it's a row or col to fire from
 		{
-			if (enemy.CheckHit(i, firepostion))
+			for (int i = 0; i < 9; i++)
 			{
-				display.hit();
-				enemyShip.setHit();
-				friendly.UpdateEnemyBoard(i, firepostion, true);
-				return;//exits the method
+				if (enemy.CheckHit(i, firepostion))
+				{
+					display.hit();
+					enemyShip.setHit();
+					friendly.UpdateEnemyBoard(i, firepostion, true);
+					return;//exits the method
+				}
+				else
+				{
+					friendly.UpdateEnemyBoard(i, firepostion, false);
+					enemy.my_ships.updateBoard(i, firepostion, 'O');
+				}
 			}
-			else
-			{
-				friendly.UpdateEnemyBoard(i, firepostion, false);
-				enemy.my_ships.updateBoard(i, firepostion, 'O');
-			}
+			display.miss();
 		}
-		display.miss();
+		else
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				if (enemy.CheckHit(firepostion, i))
+				{
+					display.hit();
+					enemyShip.setHit();
+					friendly.UpdateEnemyBoard(firepostion, i, true);
+					return;//exits the method
+				}
+				else
+				{
+					friendly.UpdateEnemyBoard(firepostion, i, false);
+					enemy.my_ships.updateBoard(firepostion, i, 'O');
+				}
+			}
+			display.miss();
+		}
 	}
 	else
 	{
-		for (int i = 0; i < 9; i++)
+		if (iscol == true)// see if it's a row or col to fire from
 		{
-			if (enemy.CheckHit(firepostion, i))
+			for (int i = 9; i > 0; i--)
 			{
-				display.hit();
-				enemyShip.setHit();
-				friendly.UpdateEnemyBoard(firepostion, i, true);
-				return;//exits the method
+				if (enemy.CheckHit(i, firepostion))
+				{
+					display.hit();
+					enemyShip.setHit();
+					friendly.UpdateEnemyBoard(i, firepostion, true);
+					return;//exits the method
+				}
+				else
+				{
+					friendly.UpdateEnemyBoard(i, firepostion, false);
+					enemy.my_ships.updateBoard(i, firepostion, 'O');
+				}
 			}
-			else
-			{
-				friendly.UpdateEnemyBoard(firepostion, i, false);
-				enemy.my_ships.updateBoard(firepostion, i, 'O');
-			}
+			display.miss();
 		}
-		display.miss();
+		else
+		{
+			for (int i = 9; i > 0; i--)
+			{
+				if (enemy.CheckHit(firepostion, i))
+				{
+					display.hit();
+					enemyShip.setHit();
+					friendly.UpdateEnemyBoard(firepostion, i, true);
+					return;//exits the method
+				}
+				else
+				{
+					friendly.UpdateEnemyBoard(firepostion, i, false);
+					enemy.my_ships.updateBoard(firepostion, i, 'O');
+				}
+			}
+			display.miss();
+		}
 	}
 }
