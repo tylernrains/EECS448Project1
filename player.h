@@ -76,6 +76,9 @@ class Player
 
 	private:
 		int numShips;
+
+	protected:
+		bool m_prevShotHit;
 };
 
 

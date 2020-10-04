@@ -4,6 +4,7 @@
  */
 
 #include "AI.h"
+#include <iostream>
 
 using namespace std;
 
@@ -96,7 +97,7 @@ string AI::shoot1() {
 string AI::shoot2() {
 	string coord = "";
 
-	m_prevShotHit = isPrevShotHit();
+	//m_prevShotHit = isPrevShotHit();
 
 	if (!m_trackingHit) {
 		if (!m_prevShotHit) {
@@ -164,7 +165,7 @@ string AI::shoot2() {
 	
 	coord += (char)(m_prevShot[0] + '1');
 	coord += (char)(m_prevShot[1] + 'A');
-
+	cout << "Firing shot at " + coord + ". Hit tracking=" << m_trackingHit << endl;
 	return coord;
 }
 
@@ -173,6 +174,12 @@ void AI::incrementDirection() {
 	m_prevShot[0] = m_origHit[0];
 	m_prevShot[1] = m_origHit[1];
 	m_prevShotHit = true;
+}
+
+void AI::torpedoHit(int row, int col) {
+	m_trackingHit = true;
+	m_origHit[0] = m_prevShot[0] = row;
+	m_origHit[1] = m_prevShot[1] = col;
 }
 
 bool AI::isPrevShotHit() {
@@ -230,6 +237,3 @@ int AI::getDifficulty() const {
 	return m_difficulty;
 
 }
-
-
-
