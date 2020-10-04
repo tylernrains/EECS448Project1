@@ -288,11 +288,6 @@ void Executive::run_setup_PvAi()
 				goto chooseShipPosition1;
 			}
 	}
-	/*
-	//TODO remove the following for loop. Uncomment it to enable random placement of player1's ships.
-	for (int i = 1; i <= shipnum; ++i) {
-		while(!player1.PlaceShip(i, std::rand() % 9, std::rand() % 9, arr_directions[std::rand() % 4])) {}
-	}*/
 
 	//print last time so player can see 1x5 ship placed
 	display.friendlyBoard(player1.my_ships.m_board);
@@ -307,10 +302,6 @@ void Executive::run_setup_PvAi()
 	for (int i = 1; i <= shipnum; ++i)
 	{
 		while (!computer.PlaceShip(i, std::rand() % 9, std::rand() % 9, arr_directions[std::rand() % 4])) {}		}
-
-	//print last time so player can see 1x5 ship placed
-	//TODO remove this before we turn in project. Used for testing.
-	display.friendlyBoard(computer.my_ships.m_board);
 
 	std::cout << "\nThe AI's ships have been placed.\n";
 
@@ -327,6 +318,12 @@ void Executive::run_PvP()
 	bool player2torpedo = true;
 	string torpedodirection = "";
 	string playershot = "";
+
+	// Explaining the torpedo
+	cout << "\n--NOTICE FOR BOTH PLAYERS--\nYour ships are equipped with torpedos!\n";
+	cout << "When fired, a torpedo will travel along a straight line until it hits a target\n";
+	cout << "or until it travels out of range, at which point it will stop.\n";
+	cout << "\nUse these with care, as you have a very limited supply of them!\n\n";
 
 	while (!shipofplayer1.isSunk() || !shipofplayer2.isSunk())
 	{
@@ -559,7 +556,6 @@ void Executive::run_PvP()
 				}
 				else if(player1.my_ships.getValue(row, col) == 'X')
 				{
-					//cout <<player2.my_ships.getValue(row, col);
 					cout << "\n\nYou've already hit that spot!\n";
 					goto chooseFire2;
 				}
@@ -579,6 +575,7 @@ void Executive::run_PvP()
 
 		if (round % 20 == 0)
 		{
+			cout << "TORPEDO RECHARGED\n";
 	 		player1torpedo = true;
 			player2torpedo = true;
 		}
@@ -592,9 +589,15 @@ void Executive::run_PvAi()
 {
 	cout << "\nNow play battleship!\n";
 
+	//Explaining the torpedo
+	cout << "\n--NOTICE TO THE PLAYER--\n";
+	cout << "Both yours and the enemy's ships are equipped with torpedos!\n";
+	cout << "When fired, a torpedo will travel along a straight line until it hits a target\n";
+	cout << "or until it travels out of range, at which point it will stop.\n";
+	cout << "\nUse these with care, as you have a very limited supply of them!\n\n";
+
 	int round = 1;
 	bool player1torpedo = true;
-	//bool player2torpedo = true; TODO need to add is for the AI
 	bool computertorpedo = true;
 
 	string torpedodirection = "";
@@ -727,12 +730,11 @@ void Executive::run_PvAi()
 					computer.my_ships.updateBoard(row, col, 'O');
 				}
 			}
+			WaitEnter();
 		}
 		else
 		{
 			cout << "BattleshipAI's turn!\n";
-			// TODO remove the following display. it is used only for testing
-			display.matchFrame(2, computer.enemy_ships.m_board, computer.my_ships.m_board);
 
 			chooseFireAI:
 
@@ -753,9 +755,7 @@ void Executive::run_PvAi()
 					}
 				}
 
-
 			} else {	//AI - not set to Hard
-
 
 				if (computertorpedo == true) {	// AI torp
 				
@@ -783,7 +783,6 @@ void Executive::run_PvAi()
 				c_col = AIshot[1];
 
 				col = charToInt(c_col);
-				// don't need the row-- here. Conversion is good without it.
 			}
 
 			if (player1.CheckHit(row, col))

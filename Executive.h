@@ -15,10 +15,20 @@ class Executive
 {
 public:
 
-	Executive(){};		//Constructor
-	~Executive(){};		//Destructor
+	/**
+	 * Constructor for Executive.
+	 * @post Executive is initialized.
+	 */
+	Executive(){};
 
-	Player player1;			//setup and runtime vars
+	/**
+	 * Destructor for Executive.
+	 * @post Executive is destroyed.
+	 */
+	~Executive(){};
+
+	// Setup and runtime vars.
+	Player player1;
 	Player player2;
 	AI computer;
 	Ship shipofplayer1;
@@ -27,7 +37,6 @@ public:
 	Display display;
 	int row, col;
 	char c_col;
-
 	int shipnum = 0;
 
 
@@ -95,6 +104,16 @@ public:
  	**/
   	int numShipCoords(int shipNum);
 
+	/**
+	 * Fires a torpedo.
+	 * @param direction - a letter indicating the direction of travel for the torpedo
+	 * @param fireposition - the row or column to fire at
+	 * @param iscol - indicates whether the target is a row or column
+	 * @param friendly - the Player who is firing the torpedo
+	 * @param enemy - the Player opposing friendly
+	 * @param enemyShip - the Ship associated with enemy
+	 * @post torpedo has been fired to specifications.
+	 */
 	void firetorpedo(string direction, int firepostion, bool iscol, Player& friendly, Player& enemy, Ship& enemyShip);
 
 };
