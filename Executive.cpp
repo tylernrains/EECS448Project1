@@ -220,6 +220,8 @@ void Executive::run_setup_PvAi()
 	while (difficulty < 1 || difficulty > 3)
 	{
 		std::cout << "That is not a valid difficulty, try again (1 = easy, 2 = medium, 3 = hard): ";
+		std::cin.clear();
+		std::cin.ignore(123, '\n');		
 		std::cin >> difficulty;
 	}
 	computer.setDifficulty(difficulty);
@@ -842,6 +844,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(i, firepostion) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}
 					friendly.UpdateEnemyBoard(i, firepostion, false);
 					enemy.my_ships.updateBoard(i, firepostion, 'O');
 				}
@@ -864,6 +870,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(firepostion, i) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}					
 					friendly.UpdateEnemyBoard(firepostion, i, false);
 					enemy.my_ships.updateBoard(firepostion, i, 'O');
 				}
@@ -875,7 +885,7 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 	{
 		if (iscol == true)// see if it's a row or col to fire from
 		{
-			for (int i = 9; i >= 0; i--)
+			for (int i = 8; i >= 0; i--)
 			{
 				if (enemy.CheckHit(i, firepostion))
 				{
@@ -888,6 +898,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(i, firepostion) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}					
 					friendly.UpdateEnemyBoard(i, firepostion, false);
 					enemy.my_ships.updateBoard(i, firepostion, 'O');
 				}
@@ -896,7 +910,7 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 		}
 		else
 		{
-			for (int i = 9; i >= 0; i--)
+			for (int i = 8; i >= 0; i--)
 			{
 				if (enemy.CheckHit(firepostion, i))
 				{
@@ -909,6 +923,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(firepostion, i) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}					
 					friendly.UpdateEnemyBoard(firepostion, i, false);
 					enemy.my_ships.updateBoard(firepostion, i, 'O');
 				}
