@@ -295,6 +295,9 @@ void Executive::run_setup_PvAi()
 	//print last time so player can see 1x5 ship placed
 	display.friendlyBoard(player1.my_ships.m_board);
 
+	player1.SetNumShips(shipnum);
+	shipofplayer1.setShipNumber(numShipCoords(shipnum));
+
 	computer.SetNumShips(shipnum);
 	shipofai.setShipNumber(numShipCoords(shipnum));
 
@@ -590,11 +593,14 @@ void Executive::run_PvAi()
 	int round = 1;
 	bool player1torpedo = true;
 	//bool player2torpedo = true; TODO need to add is for the AI
+	bool computertorpedo = true;
+
 	string torpedodirection = "";
 	string playershot = "";
 
 	while (!shipofplayer1.isSunk() || !shipofai.isSunk())
 	{
+
 		if (round % 2 == 1)
 		{
 			cout << "Player 1's turn!\n";
@@ -672,7 +678,7 @@ void Executive::run_PvAi()
 				}
 				player1torpedo = false;
 			}
-			else if(playershot == "shot") // Shooting a normal shot
+			else if(playershot == "shot" || !player1torpedo) // Shooting a normal shot
 			{
 				chooseFire1:
 				cout << "\nChoose the coordinate that you want to fire (row(1 - 9) col(A - I)): ";
@@ -732,14 +738,15 @@ void Executive::run_PvAi()
 
 			if(computer.getDifficulty() == 3){ // AI is set to Hard
 
+				
 				while(true){
+
 
 					AIshot = computer.fireShot();
 					row = AIshot[0];
 					c_col = AIshot[1];
 
 					col = charToInt(c_col);
-					row--;
 
 					if (player1.Only_CheckHit(row, col) == true){
 						break;
@@ -747,7 +754,22 @@ void Executive::run_PvAi()
 				}
 
 
-			} else {	//AI is not set to Hard
+			} else {	//AI - not set to Hard
+
+
+					if (computertorpedo == true) {	// AI torp
+				
+						int comp_torp_shot = rand() % 9 + 1;
+
+					firetorpedo("f", comp_torp_shot, false, computer, player1, shipofplayer1);
+					if (shipofplayer1.isSunk()){
+						cout << "BattleshipAI Wins!\n";
+						break;
+					}
+					computertorpedo = false;
+					goto skip;
+				}
+
 
 				AIshot = computer.fireShot();
 
@@ -783,6 +805,8 @@ void Executive::run_PvAi()
 				player1.my_ships.updateBoard(row, col, 'O');
 			}
 		}
+
+		skip:
 		round++;
 	}
 }

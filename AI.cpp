@@ -4,15 +4,12 @@
  */
 
 #include "AI.h"
-#include <time.h>
-#include <iostream>
 
 using namespace std;
 
 
 AI::AI(){
-
-	m_difficulty = 1;			//if not specified, then set game to Easy
+	m_difficulty = 1;
 	m_direction = 0;
 	m_prevShot = nullptr;
 	m_origHit = nullptr;
@@ -52,6 +49,14 @@ AI::~AI() {
 
 void AI::setDifficulty(int difficulty)
 {
+	// Deleting these variables on the off-chance they've been initialized before difficulty change.
+	// This prevents any possible memory leakage.
+	if (m_prevShot != nullptr)
+		delete[] m_prevShot;
+	if (m_origHit != nullptr)
+		delete[] m_origHit;
+
+
 	m_difficulty = difficulty;
 	if (m_difficulty == 2)
 	{
@@ -80,7 +85,6 @@ string AI::fireShot() {
 }
 
 string AI::shoot1() {
-	//srand(time(NULL));
 
 	string coord = "";
        	coord += (char)(rand() % 9 + '1');
@@ -183,16 +187,23 @@ bool AI::isPrevShotHit() {
 		return false;
 }
 
+	int counter_diag = 0;
 
 string AI::shoot3() { //Hard Difficulty
 	
-	string coord = "";
+	string coord = "1A";
+
 
 	if(m_trackingHit == false){ // m_trackingHit is only used in the hardai for the sake
 								// of seeing if it is the first shot it makes. It does
 								// nothing else after. It does not track hits at all.
 		m_trackingHit = true;
-		return "1A";
+		m_prevShot[0] = 1;
+		m_prevShot[1] = 65; //A
+
+		coord[0] = m_prevShot[0];		//actual int - col
+		coord[1] = char(m_prevShot[1]);	//ACII value - row
+		return coord;
 	}
 
 
@@ -210,12 +221,11 @@ string AI::shoot3() { //Hard Difficulty
 	coord[0] = m_prevShot[0];		//actual int - col
 	coord[1] = char(m_prevShot[1]);	//ACII value - row
 
-
 	return coord;
 }
 
 
-int AI::getDifficulty(){
+int AI::getDifficulty() const {
 
 	return m_difficulty;
 
