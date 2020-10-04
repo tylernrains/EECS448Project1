@@ -52,6 +52,12 @@ class AI : public Player
 		 */
 		int getDifficulty() const;
 
+		/**
+		 * Function is part of handling the case that the medium difficulty AI hits with a torpedo
+		 * @post the AI will start hit tracking on the torpedo hit.
+		 */
+		void torpedoHit(int row, int col);
+
 
 	private:
 
@@ -60,7 +66,7 @@ class AI : public Player
 		int* m_prevShot;
 		int* m_origHit;
 		bool m_trackingHit;
-		bool m_prevShotHit;
+		//bool m_prevShotHit;
 		int m_direction; // Direction from hit to search for more hits: 0 up, 1 left, 2 right, 3 down.
 
 		/**

@@ -15,8 +15,13 @@ void Player::PrintEnemyShips() { enemy_ships.printBoard(); }
 
 void Player::UpdateEnemyBoard(int row, int col, bool hit)
 {
-    if (hit) enemy_ships.updateBoard(row, col, 'X');
-    else enemy_ships.updateBoard(row, col, 'O');
+    if (hit) {
+	   enemy_ships.updateBoard(row, col, 'X');
+	   m_prevShotHit = true;
+    } else {
+	    enemy_ships.updateBoard(row, col, 'O');
+	    m_prevShotHit = false;
+    }
 }
 
 bool Player::PlaceShip(int size, int row, int col, char direction)
