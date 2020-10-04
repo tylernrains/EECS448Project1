@@ -619,7 +619,7 @@ void Executive::run_PvAi()
 			} else // The player doesn't have a torpedo available.
 				playershot == "shot";
 
-			if (playershot == "torp") // Shooting a torpedo
+			if (playershot == "torp" && player1torpedo) // Shooting a torpedo
 			{
 				string colorrow = "";
 
@@ -738,9 +738,7 @@ void Executive::run_PvAi()
 
 			if(computer.getDifficulty() == 3){ // AI is set to Hard
 
-				
 				while(true){
-
 
 					AIshot = computer.fireShot();
 					row = AIshot[0];
@@ -757,11 +755,15 @@ void Executive::run_PvAi()
 			} else {	//AI - not set to Hard
 
 
-					if (computertorpedo == true) {	// AI torp
+				if (computertorpedo == true) {	// AI torp
 				
-						int comp_torp_shot = rand() % 9 + 1;
+					int comp_torp_shot = rand() % 9 + 1;
+					string direction = "f";
 
-					firetorpedo("f", comp_torp_shot, false, computer, player1, shipofplayer1);
+					if (computer.getDifficulty() == 2)
+						direction += '2';
+
+					firetorpedo(direction, comp_torp_shot, false, computer, player1, shipofplayer1);
 					if (shipofplayer1.isSunk()){
 						cout << "BattleshipAI Wins!\n";
 						break;
@@ -792,10 +794,12 @@ void Executive::run_PvAi()
 			}
 			else if(player1.my_ships.getValue(row, col) == 'X')
 			{
+				computer.UpdateEnemyBoard(row, col, false);
 				goto chooseFireAI;
 			}
 			else if(computer.enemy_ships.getValue(row, col) == 'O')
 			{
+				computer.UpdateEnemyBoard(row, col, false);
 				goto chooseFireAI;
 			}
 			else
@@ -814,6 +818,11 @@ void Executive::run_PvAi()
 
 void Executive::firetorpedo(string direction, int firepostion, bool iscol, Player& friendly, Player& enemy, Ship& enemyShip)
 {
+	char temp = ' '; // Used for medium difficulty AI
+	if (direction.length() == 2)
+		temp = direction[1];
+
+	direction = direction[0];
 	if(direction == "f" || direction == "d")
 	{
 		if (iscol == true)// see if it's a row or col to fire from
@@ -825,6 +834,8 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 					display.hit();
 					enemyShip.setHit();
 					friendly.UpdateEnemyBoard(i, firepostion, true);
+					if (temp == '2') // Used in medium difficulty AI
+						computer.torpedoHit(i, firepostion);
 					return;//exits the method
 				}
 				else
@@ -844,6 +855,9 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 					display.hit();
 					enemyShip.setHit();
 					friendly.UpdateEnemyBoard(firepostion, i, true);
+
+					if (temp == '2')
+						computer.torpedoHit(firepostion, i);
 					return;//exits the method
 				}
 				else
@@ -866,6 +880,8 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 					display.hit();
 					enemyShip.setHit();
 					friendly.UpdateEnemyBoard(i, firepostion, true);
+					if (temp == '2')
+						computer.torpedoHit(i, firepostion);
 					return;//exits the method
 				}
 				else
@@ -885,6 +901,8 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 					display.hit();
 					enemyShip.setHit();
 					friendly.UpdateEnemyBoard(firepostion, i, true);
+					if (temp == '2')
+						computer.torpedoHit(firepostion, i);
 					return;//exits the method
 				}
 				else
