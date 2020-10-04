@@ -89,17 +89,10 @@ class AI : public Player
 		void incrementDirection();
 
 		/**
-		 * Checks if the last shot fired was a hit.
-		 * @pre the AI must be set to difficulty 2
-		 * @post returns true if the previous shot was a hit, false otherwise.
-		 */
-		bool isPrevShotHit();
-
-		/**
 		 * Fires a shot. Hard difficulty.
 		 * @post returns a string of length 2 that contains the coordinates to fire at.
 		 */
 		string shoot3();
 };
 
-#endif
+#endif // AI_H
