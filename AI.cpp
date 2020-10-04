@@ -4,15 +4,12 @@
  */
 
 #include "AI.h"
-#include <time.h>
-#include <iostream>
 
 using namespace std;
 
 
 AI::AI(){
-
-	m_difficulty = 1;			//if not specified, then set game to Easy
+	m_difficulty = 1;
 	m_direction = 0;
 	m_prevShot = nullptr;
 	m_origHit = nullptr;
@@ -52,6 +49,14 @@ AI::~AI() {
 
 void AI::setDifficulty(int difficulty)
 {
+	// Deleting these variables on the off-chance they've been initialized before difficulty change.
+	// This prevents any possible memory leakage.
+	if (m_prevShot != nullptr)
+		delete[] m_prevShot;
+	if (m_origHit != nullptr)
+		delete[] m_origHit;
+
+
 	m_difficulty = difficulty;
 	if (m_difficulty == 2)
 	{
@@ -80,7 +85,6 @@ string AI::fireShot() {
 }
 
 string AI::shoot1() {
-	//srand(time(NULL));
 
 	string coord = "";
        	coord += (char)(rand() % 9 + '1');
@@ -215,7 +219,7 @@ string AI::shoot3() { //Hard Difficulty
 }
 
 
-int AI::getDifficulty(){
+int AI::getDifficulty() const {
 
 	return m_difficulty;
 
