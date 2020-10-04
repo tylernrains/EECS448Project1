@@ -842,6 +842,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(i, firepostion) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}
 					friendly.UpdateEnemyBoard(i, firepostion, false);
 					enemy.my_ships.updateBoard(i, firepostion, 'O');
 				}
@@ -864,6 +868,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(firepostion, i) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}					
 					friendly.UpdateEnemyBoard(firepostion, i, false);
 					enemy.my_ships.updateBoard(firepostion, i, 'O');
 				}
@@ -888,6 +896,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(i, firepostion) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}					
 					friendly.UpdateEnemyBoard(i, firepostion, false);
 					enemy.my_ships.updateBoard(i, firepostion, 'O');
 				}
@@ -909,6 +921,10 @@ void Executive::firetorpedo(string direction, int firepostion, bool iscol, Playe
 				}
 				else
 				{
+					if (enemy.my_ships.getValue(firepostion, i) == 'X') //if the torpedo comes across a previously hit ship, it stops
+					{
+						return;
+					}					
 					friendly.UpdateEnemyBoard(firepostion, i, false);
 					enemy.my_ships.updateBoard(firepostion, i, 'O');
 				}
