@@ -757,13 +757,15 @@ void Executive::run_PvAi()
 
 				if (computertorpedo == true) {	// AI torp
 				
-					int comp_torp_shot = rand() % 9 + 1;
-					string direction = "f";
+					int comp_torp_shot = rand() % 9;
+					string direction = ((int)(rand() % 2) == 0) ? "f" : "b";
 
 					if (computer.getDifficulty() == 2)
-						direction += '2';
+						direction += '2'; // Used for medium AI
 
-					firetorpedo(direction, comp_torp_shot, false, computer, player1, shipofplayer1);
+					bool iscol = (int)(rand() % 2);
+
+					firetorpedo(direction, comp_torp_shot, iscol, computer, player1, shipofplayer1);
 					if (shipofplayer1.isSunk()){
 						cout << "BattleshipAI Wins!\n";
 						break;
