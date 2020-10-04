@@ -95,7 +95,7 @@ public:
  	**/
   	int numShipCoords(int shipNum);
 
-	void firetorpedo(int turns, int firepostion, bool iscol, bool playerVai);
+	void firetorpedo(string direction, int firepostion, bool iscol, Player& friendly, Player& enemy, Ship& enemyShip);
 
 };
 #endif // EXECUTIVE_H
