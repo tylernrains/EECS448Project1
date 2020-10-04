@@ -187,16 +187,23 @@ bool AI::isPrevShotHit() {
 		return false;
 }
 
+	int counter_diag = 0;
 
 string AI::shoot3() { //Hard Difficulty
 	
-	string coord = "";
+	string coord = "1A";
+
 
 	if(m_trackingHit == false){ // m_trackingHit is only used in the hardai for the sake
 								// of seeing if it is the first shot it makes. It does
 								// nothing else after. It does not track hits at all.
 		m_trackingHit = true;
-		return "1A";
+		m_prevShot[0] = 1;
+		m_prevShot[1] = 65; //A
+
+		coord[0] = m_prevShot[0];		//actual int - col
+		coord[1] = char(m_prevShot[1]);	//ACII value - row
+		return coord;
 	}
 
 
@@ -213,7 +220,6 @@ string AI::shoot3() { //Hard Difficulty
 
 	coord[0] = m_prevShot[0];		//actual int - col
 	coord[1] = char(m_prevShot[1]);	//ACII value - row
-
 
 	return coord;
 }

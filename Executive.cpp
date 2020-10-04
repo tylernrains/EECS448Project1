@@ -295,6 +295,9 @@ void Executive::run_setup_PvAi()
 	//print last time so player can see 1x5 ship placed
 	display.friendlyBoard(player1.my_ships.m_board);
 
+	player1.SetNumShips(shipnum);
+	shipofplayer1.setShipNumber(numShipCoords(shipnum));
+
 	computer.SetNumShips(shipnum);
 	shipofai.setShipNumber(numShipCoords(shipnum));
 
@@ -732,14 +735,15 @@ void Executive::run_PvAi()
 
 			if(computer.getDifficulty() == 3){ // AI is set to Hard
 
+				
 				while(true){
+
 
 					AIshot = computer.fireShot();
 					row = AIshot[0];
 					c_col = AIshot[1];
 
 					col = charToInt(c_col);
-					row--;
 
 					if (player1.Only_CheckHit(row, col) == true){
 						break;
