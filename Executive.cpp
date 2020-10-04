@@ -220,6 +220,8 @@ void Executive::run_setup_PvAi()
 	while (difficulty < 1 || difficulty > 3)
 	{
 		std::cout << "That is not a valid difficulty, try again (1 = easy, 2 = medium, 3 = hard): ";
+		std::cin.clear();
+		std::cin.ignore(123, '\n');		
 		std::cin >> difficulty;
 	}
 	computer.setDifficulty(difficulty);
