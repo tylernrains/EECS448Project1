@@ -619,7 +619,7 @@ void Executive::run_PvAi()
 			} else // The player doesn't have a torpedo available.
 				playershot == "shot";
 
-			if (playershot == "torp") // Shooting a torpedo
+			if (playershot == "torp" && player1torpedo) // Shooting a torpedo
 			{
 				string colorrow = "";
 
