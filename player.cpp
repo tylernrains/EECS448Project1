@@ -15,8 +15,13 @@ void Player::PrintEnemyShips() { enemy_ships.printBoard(); }
 
 void Player::UpdateEnemyBoard(int row, int col, bool hit)
 {
-    if (hit) enemy_ships.updateBoard(row, col, 'X');
-    else enemy_ships.updateBoard(row, col, 'O');
+    if (hit) {
+	   enemy_ships.updateBoard(row, col, 'X');
+	   m_prevShotHit = true;
+    } else {
+	    enemy_ships.updateBoard(row, col, 'O');
+	    m_prevShotHit = false;
+    }
 }
 
 bool Player::PlaceShip(int size, int row, int col, char direction)
@@ -74,7 +79,7 @@ bool Player::PlaceShip(int size, int row, int col, char direction)
             {
                 if (my_ships.getValue(i, col) != '-')
                 {
-                    cout << "nope because " << my_ships.getValue(i, col);
+                    //cout << "nope because " << my_ships.getValue(i, col);
                     return false;
                 }
             }
@@ -96,6 +101,18 @@ bool Player::CheckHit(int row, int col)
     if (my_ships.getValue(row, col) == 'S')
     {
         my_ships.updateBoard(row, col, 'X');
+        return true;
+    }
+    else return false;
+}
+
+
+bool Player::Only_CheckHit(int row, int col)
+{
+    if (row > 8 || row < 0 || col > 8 || col < 0 || my_ships.getValue(row, col) == 'X') return false;
+
+    if (my_ships.getValue(row, col) == 'S')
+    {
         return true;
     }
     else return false;
