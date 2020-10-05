@@ -303,8 +303,8 @@ void Executive::run_setup_PvAi()
 	{
 		while (!computer.PlaceShip(i, std::rand() % 9, std::rand() % 9, arr_directions[std::rand() % 4])) {}		}
 
-	std::cout << "\nThe AI's ships have been placed.\n";
-
+	std::cout << "\nThe AI's ships have been placed.\n\n";
+	WaitEnter();
 	run_PvAi();
 }
 

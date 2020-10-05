@@ -79,7 +79,7 @@ bool Player::PlaceShip(int size, int row, int col, char direction)
             {
                 if (my_ships.getValue(i, col) != '-')
                 {
-                    cout << "nope because " << my_ships.getValue(i, col);
+                    //cout << "nope because " << my_ships.getValue(i, col);
                     return false;
                 }
             }

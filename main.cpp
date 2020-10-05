@@ -23,7 +23,7 @@ int main(){
 
 	while (true){
 
-		std::cout << "Welcome! How would you like to play Battleship?\n\n  1) Player vs Player\n  2) Player vs AI\n\n Enter choice: ";
+		std::cout << "Welcome! How would you like to play Battleship?\n\n  1) Player vs Player\n  2) Player vs AI\n\nEnter choice: ";
 		std::cin >> Gameplay_opt;
 
 	if(cin.fail()){
@@ -41,7 +41,7 @@ int main(){
 
 	} else if (Gameplay_opt == 2) {
 
-		std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n";
+		std::cout << "\n";
 		exec.run_setup_PvAi();
 		break;
 
@@ -52,7 +52,7 @@ int main(){
 	 }
 	}
 	
-	std::cout << "\nClosing Battleship\n\n\n";
+	std::cout << "\nClosing Battleship\n\n";
 
 	return(0);
 }
