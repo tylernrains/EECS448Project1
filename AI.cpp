@@ -4,7 +4,6 @@
  */
 
 #include "AI.h"
-#include <iostream>
 
 using namespace std;
 
@@ -86,8 +85,8 @@ string AI::fireShot() {
 }
 
 string AI::shoot1() {
-
 	string coord = "";
+
        	coord += (char)(rand() % 9 + '1');
 	coord += (char)(rand() % 9 + 'A');
 	
@@ -96,8 +95,6 @@ string AI::shoot1() {
 
 string AI::shoot2() {
 	string coord = "";
-
-	//m_prevShotHit = isPrevShotHit();
 
 	if (!m_trackingHit) {
 		if (!m_prevShotHit) {
@@ -165,7 +162,7 @@ string AI::shoot2() {
 	
 	coord += (char)(m_prevShot[0] + '1');
 	coord += (char)(m_prevShot[1] + 'A');
-	cout << "Firing shot at " + coord + ". Hit tracking=" << m_trackingHit << endl;
+
 	return coord;
 }
 
@@ -181,20 +178,6 @@ void AI::torpedoHit(int row, int col) {
 	m_origHit[0] = m_prevShot[0] = row;
 	m_origHit[1] = m_prevShot[1] = col;
 }
-
-bool AI::isPrevShotHit() {
-
-	if (m_prevShot[0] < 9 && m_prevShot[0] >= 0 && m_prevShot[1] < 9 && m_prevShot[1] >= 0) {
-		if (enemy_ships.getValue(m_prevShot[0], m_prevShot[1]) == 'X') {
-			enemy_ships.updateBoard(m_prevShot[0], m_prevShot[1], 'O');
-			return true;
-		} else
-			return false;
-	} else
-		return false;
-}
-
-	int counter_diag = 0;
 
 string AI::shoot3() { //Hard Difficulty
 	
